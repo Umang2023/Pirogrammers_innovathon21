@@ -7,7 +7,7 @@ body {
     font-family: 'Abril Fatface', cursive !important;
 }
 
-.home-page, .setup-page, .dashboard-page {
+.home-page, .setup-page, .dashboard-page, .profile-page {
     min-height: 100vh;
     min-width: 100vw;
     max-width: 100vw;
@@ -214,4 +214,59 @@ body {
 
 .dashboard-hope, .dashboard-welcome {
     font-size: 1.2rem;
+}
+
+.profile-page-body {
+    width: 100vw;
+    height: calc(100vh - 60px);
+    padding: 50px 100px 0 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.profile-head {
+    font-size: 3rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.basic-info {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    margin-bottom: 30px;
+}
+
+.name-email-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+    justify-content: center;
+}
+
+.img-info {
+    height: 200px;
+    width: 200px;
+}
+
+.profile-img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.handles-info {
+    display: flex;
+    width: 60%;
+}
+
+.left-handles, .right-handles {
+    display: flex;
+    width: 50%;
+    font-size: 1.5rem;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
 }

@@ -49,6 +49,10 @@ app.get('/setup',authMiddleware,(req,res)=>{
     res.sendFile(__dirname + '/public/html/userSetup.html')
 })
 
+app.get('/profile',authMiddleware,(req,res)=>{
+    res.sendFile(__dirname + '/public/html/profile.html')
+})
+
 app.listen(PORT,()=>{
     console.log(`server running on port ${PORT}`)
 })

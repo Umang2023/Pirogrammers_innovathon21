@@ -9,7 +9,7 @@ router.get('/test',authMiddleware,(req,res)=>{
     return res.json(diff)
 })
 
-router.get('/current',async (req,res)=>{
+router.get('/current',authMiddleware,async (req,res)=>{
     return res.json(req.user)
 })
 

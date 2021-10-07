@@ -1,65 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="shortcut icon" href="../resources/logo.jpeg" type="image/x-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="shortcut icon"
+      href="../resources/logo.jpeg"
+      type="image/x-icon"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap"
+      rel="stylesheet"
+    />
     <title>JaggaCode!</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="home-page">
-        <div class="home-page-navbar z-depth-3">
-            <div class="home-navbar-left">
-                <div class="navbar-logo">
-                    <a href="/dashboard" title="Home" class="navbar-logo-link">
-                        <div class="navbar-logo-img">
-                            <img class="navbar-img" src="../resources/logo.jpeg" alt="">
-                        </div>
-                        <div class="navbar-logo-title">
-                            JaggaCode
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-
-            <div class="home-navbar-right">
-                <form action="/register" class="navbar-register">
-                    <button class="waves-effect waves-light btn user-register-but">Sign Up</button>
-                </form>
-                <form action="/login" class="navbar-login">
-                    <button class="waves-effect waves-light btn user-login-but">Login</button>
-                </form>
-            </div>
+      <div class="home-page-navbar z-depth-3">
+        <div class="home-navbar-left">
+          <div class="navbar-logo">
+            <a href="/dashboard" title="Home" class="navbar-logo-link">
+              <div class="navbar-logo-img">
+                <img class="navbar-img" src="../resources/logo.jpeg" alt="" />
+              </div>
+              <div class="navbar-logo-title">JaggaCode</div>
+            </a>
+          </div>
         </div>
 
-        <div class="home-page-body">
-            <div class="home-body-head">
-                <div class="home-page-info">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.
-                </div>
-
-                <div class="home-page-img">
-                    <img class="home-img" src="../resources/home img.jpeg" alt="">
-                </div>
-
-            </div>
-
+        <div class="home-navbar-right">
+          <form action="/register" class="navbar-register">
+            <button class="waves-effect waves-light btn user-register-but">
+              Sign Up
+            </button>
+          </form>
+          <form action="/login" class="navbar-login">
+            <button class="waves-effect waves-light btn user-login-but">
+              Login
+            </button>
+          </form>
         </div>
+      </div>
 
+      <div class="home-page-body">
+        <div class="home-body-head">
+          <div class="home-page-info">
+            JaggaCode is Judge-a-code, an online platform which judges a
+            solution before compiling it. <br />
+            <br />
+            This platform is aimed to solve the high load problem on servers.
+            The main idea is to implement certain checks that will be performed
+            on the client side of the particular user before sending the
+            submission to the server. Also these checks will not affect the
+            performance of other users and the main server. Apart from this, we
+            have some exciting and useful features such as code autosave,
+            problem sorting, recommendation system and track user profile
+            system.
+          </div>
+
+          <div class="home-page-img">
+            <img class="home-img" src="../resources/home img.png" alt="" />
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="../js/home.js"></script>
-</body>
-
+  </body>
 </html>

@@ -1,0 +1,166 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.home-page, .setup-page, .dashboard-page {
+    min-height: 100vh;
+    min-width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+.home-page-navbar {
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 20px;
+}
+
+.home-navbar-left, .home-navbar-right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.navbar-logo {
+    height: 100%;
+    margin-right: 15px;
+}
+
+.navbar-logo-link {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    font-size: 1.5rem;
+    color: black;
+    font-weight: 500;
+}
+
+.navbar-logo-img {
+    height: 40px;
+    width: 40px;
+}
+
+.navbar-img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.user-register-but, .user-login-but, .user-logout-but {
+    background-color: #37474f;
+    border-radius: 10px;
+    text-transform: none;
+    font-size: 1.2rem;
+}
+
+.home-body-head {
+    width: 100vw;
+    height: calc(100vh - 60px);
+    padding: 120px 80px 0 80px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-page-info {
+    width: 40%;
+}
+
+.home-page-img {
+    height: 400px;
+    width: 400px;
+}
+
+.home-img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.setup-page-body {
+    width: 100vw;
+    height: calc(100vh - 60px);
+    padding: 80px 80px 0 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.setup-text {
+    font-size: 3rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.setup-form-body {
+    display: flex;
+    width: 50%;
+}
+
+.setup-form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.codeforces-id, .codechef-id, .leetcode-id, .atcoder-id, .spoj-id {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.setup-ids {
+    font-size: 1.3rem;
+}
+
+.setup-fields {
+    width: 60% !important;
+    font-size: 1.3rem;
+}
+
+.setup-form-submit {
+    margin: 30px auto 0 auto;
+}
+
+.setup-submit-but {
+    background-color: #37474f;
+    border-radius: 10px;
+    text-transform: none;
+    font-size: 1.3rem;
+}
+
+.navbar-profile, .navbar-contests, .navbar-codeforces, .navbar-friendly {
+    height: 100%;
+}
+
+.navbar-contests-link, .navbar-codeforces-link, .navbar-friendly-link {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    color: black;
+    font-weight: 500;
+}
+
+.navbar-profile-link {
+    color: white;
+    align-items: center;
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.navbar-profile-img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: teal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

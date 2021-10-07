@@ -3,6 +3,11 @@
     padding: 0;
 }
 
+body {
+    height: 100vh;
+    font-family: 'Abril Fatface', cursive !important;
+}
+
 .home-page, .setup-page, .dashboard-page {
     min-height: 100vh;
     min-width: 100vw;
@@ -12,11 +17,12 @@
 
 .home-page-navbar {
     width: 100vw;
-    height: 60px;
+    height: 5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 5px 20px;
+    background-color: black;
 }
 
 .home-navbar-left, .home-navbar-right {
@@ -35,8 +41,12 @@
     gap: 5px;
     align-items: center;
     font-size: 1.5rem;
-    color: black;
+    color: white;
     font-weight: 500;
+}
+
+.navbar-logo-link:hover {
+    color: #26a69a;
 }
 
 .navbar-logo-img {
@@ -51,22 +61,33 @@
 }
 
 .user-register-but, .user-login-but, .user-logout-but {
-    background-color: #37474f;
+    background-color: white;
     border-radius: 10px;
     text-transform: none;
     font-size: 1.2rem;
+    color: black;
+    font-family: 'Abril Fatface', cursive !important;
+}
+
+.home-page-body {
+    background-color: white;
+    background-repeat: no-repeat;
 }
 
 .home-body-head {
     width: 100vw;
     height: calc(100vh - 60px);
-    padding: 120px 80px 0 80px;
+    padding: 5rem 10rem 5rem;
     display: flex;
     justify-content: space-between;
 }
 
 .home-page-info {
-    width: 40%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
 }
 
 .home-page-img {
@@ -159,7 +180,7 @@
     height: 40px;
     width: 40px;
     border-radius: 50%;
-    background-color: teal;
+    background-color: #26a69a;
     display: flex;
     justify-content: center;
     align-items: center;

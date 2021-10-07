@@ -5,6 +5,9 @@ const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 5000
 const passport=require('passport')
 const cookieSession = require('cookie-session')
+const cookieParse = require('cookie-parser')
+const cookieParser = require('cookie-parser')
+const authMiddleware = require('./middleware/authMiddleware')
 
 app.use(bodyParser.json())
 
@@ -18,6 +21,7 @@ mongoose.connection.on('error', () => {
     console.log('failed to connect to database')
 })
 
+app.use(express.static('public'))
 require('./routes/passport')
 
 app.use(cookieSession({
@@ -26,14 +30,18 @@ app.use(cookieSession({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
-
+app.use(cookieParser())
 
 
 app.use(require('./routes/authentication'))
 app.use('/user',require('./routes/user'))
 
-app.get('/',(req,res)=>{
+app.get('/home',(req,res)=>{
     res.sendFile(__dirname + '/public/html/home.html')
+})
+
+app.get('/',authMiddleware,(req,res)=>{
+    res.sendFile(__dirname + '/public/html/dashboard.html')
 })
 
 app.listen(PORT,()=>{

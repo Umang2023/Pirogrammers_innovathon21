@@ -12,6 +12,7 @@ router.get('/logout',async (req,res)=>{
 })
 
 router.get('/test',(req,res)=>{
+    console.log(req.cookies)
     return res.json('hi')
 })
 

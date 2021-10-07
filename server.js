@@ -45,6 +45,10 @@ app.get('/',authMiddleware,(req,res)=>{
     res.sendFile(__dirname + '/public/html/dashboard.html')
 })
 
+app.get('/dashboard',authMiddleware,(req,res)=>{
+    res.sendFile(__dirname + '/public/html/dashboard.html')
+})
+
 app.get('/setup',authMiddleware,(req,res)=>{
     res.sendFile(__dirname + '/public/html/userSetup.html')
 })

@@ -1,4 +1,4 @@
-## JAGGA CODE ##
+## JUGGA CODE ##
 
 # To run the project #
 

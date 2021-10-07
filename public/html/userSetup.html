@@ -1,112 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link
-      rel="shortcut icon"
-      href="../resources/logo.png"
-      type="image/x-icon"
-    />
-    <title>JuggaCode!</title>
-  </head>
 
-  <body>
-    <div class="setup-page">
-      <div class="home-page-navbar z-depth-3">
-        <div class="home-navbar-left">
-          <div class="navbar-logo">
-            <a href="/dashboard" title="Home" class="navbar-logo-link">
-              <div class="navbar-logo-img">
-                <img class="navbar-img" src="../resources/logo.png" alt="" />
-              </div>
-              <div class="navbar-logo-title">JuggaCode</div>
-            </a>
-          </div>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="shortcut icon" href="../resources/logo.png" type="image/x-icon" />
+  <title>JuggaCode!</title>
+</head>
 
-        <div class="home-navbar-right">
-          <form action="/user/logout" class="navbar-logout">
-            <button class="waves-effect waves-light btn user-logout-but">
-              Logout
-            </button>
-          </form>
+<body>
+  <div class="setup-page">
+    <div class="home-page-navbar z-depth-3">
+      <div class="home-navbar-left">
+        <div class="navbar-logo">
+          <a href="/dashboard" title="Home" class="navbar-logo-link">
+            <div class="navbar-logo-img">
+              <img class="navbar-img" src="../resources/logo.png" alt="" />
+            </div>
+            <div class="navbar-logo-title">JuggaCode</div>
+          </a>
         </div>
       </div>
 
-      <div class="setup-page-body">
-        <div class="setup-text">Just one more step left!</div>
-
-        <div class="setup-form-body">
-          <form action="/user/setup" class="setup-form" method="POST">
-            <div class="codeforces-id">
-              <div class="setup-ids">Codeforces Username</div>
-              <input
-                class="setup-fields"
-                type="text"
-                name="codeforces"
-                id=""
-                placeholder="Enter Codeforces Username"
-                required
-              />
-            </div>
-            <div class="codechef-id">
-              <div class="setup-ids">Codechef Username</div>
-              <input
-                class="setup-fields"
-                type="text"
-                name="codechef"
-                id=""
-                placeholder="Enter Codechef Username"
-              />
-            </div>
-            <div class="leetcode-id">
-              <div class="setup-ids">Leetcode Username</div>
-              <input
-                class="setup-fields"
-                type="text"
-                name="leetcode"
-                id=""
-                placeholder="Enter Leetcode Username"
-              />
-            </div>
-            <div class="atcoder-id">
-              <div class="setup-ids">Atcoder Username</div>
-              <input
-                class="setup-fields"
-                type="text"
-                name="atcoder"
-                id=""
-                placeholder="Enter Atcoder Username"
-              />
-            </div>
-            <div class="spoj-id">
-              <div class="setup-ids">Spoj Username</div>
-              <input
-                class="setup-fields"
-                type="text"
-                name="Spoj"
-                id=""
-                placeholder="Enter Spoj Username"
-              />
-            </div>
-            <div class="setup-form-submit">
-              <button class="waves-effect waves-light btn setup-submit-but">
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
+      <div class="home-navbar-right">
+        <form action="/user/logout" class="navbar-logout">
+          <button class="waves-effect waves-light btn user-logout-but">
+            Logout
+          </button>
+        </form>
       </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="../js/setup.js"></script>
-  </body>
+    <div class="setup-page-body">
+      <div class="setup-text">Just one more step left!</div>
+
+      <div class="setup-form-body">
+        <form action="/user/setup" class="setup-form" method="POST">
+          <div class="codeforces-id">
+            <div class="setup-ids">Codeforces Username</div>
+            <input class="setup-fields" type="text" name="codeforces" id="" placeholder="Enter Codeforces Username"
+              required />
+          </div>
+          <div class="codechef-id">
+            <div class="setup-ids">Codechef Username</div>
+            <input class="setup-fields" type="text" name="codechef" id="" placeholder="Enter Codechef Username" />
+          </div>
+          <div class="leetcode-id">
+            <div class="setup-ids">Leetcode Username</div>
+            <input class="setup-fields" type="text" name="leetcode" id="" placeholder="Enter Leetcode Username" />
+          </div>
+          <div class="atcoder-id">
+            <div class="setup-ids">Atcoder Username</div>
+            <input class="setup-fields" type="text" name="atcoder" id="" placeholder="Enter Atcoder Username" />
+          </div>
+          <div class="spoj-id">
+            <div class="setup-ids">Spoj Username</div>
+            <input class="setup-fields" type="text" name="Spoj" id="" placeholder="Enter Spoj Username" />
+          </div>
+          <div class="setup-form-submit">
+            <button class="waves-effect waves-light btn setup-submit-but">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="../js/setup.js"></script>
+</body>
+
 </html>

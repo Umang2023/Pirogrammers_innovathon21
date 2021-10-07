@@ -4,7 +4,6 @@
 }
 
 body {
-    height: 100vh;
     font-family: 'Abril Fatface', cursive !important;
 }
 
@@ -17,7 +16,7 @@ body {
 
 .home-page-navbar {
     width: 100vw;
-    height: 5rem;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -77,7 +76,7 @@ body {
 .home-body-head {
     width: 100vw;
     height: calc(100vh - 60px);
-    padding: 5rem 10rem 5rem;
+    padding: 120px 80px 0 80px;
     display: flex;
     justify-content: space-between;
 }

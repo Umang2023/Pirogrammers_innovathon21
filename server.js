@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser')
 const authMiddleware = require('./middleware/authMiddleware')
 
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:true}))
 
 
 mongoose.connect('mongodb://localhost:27017/jaggacode', { useNewUrlParser: true, useUnifiedTopology: true });
@@ -42,6 +43,10 @@ app.get('/home',(req,res)=>{
 
 app.get('/',authMiddleware,(req,res)=>{
     res.sendFile(__dirname + '/public/html/dashboard.html')
+})
+
+app.get('/setup',authMiddleware,(req,res)=>{
+    res.sendFile(__dirname + '/public/html/userSetup.html')
 })
 
 app.listen(PORT,()=>{

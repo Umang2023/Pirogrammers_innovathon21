@@ -14,7 +14,19 @@ const userSchema = new mongoose.Schema({
     googleId:{
         type:String
     },
-    codeforces_handle:{
+    codeforces:{
+        type:String
+    },
+    codechef:{
+        type:String
+    },
+    leetcode:{
+        type:String
+    },
+    atcoder:{
+        type:String
+    },
+    spoj:{
         type:String
     },
     currentSavedCode:{

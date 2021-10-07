@@ -32,7 +32,7 @@
         </div>
 
         <div class="home-navbar-right">
-          <form action="/register" class="navbar-logout">
+          <form action="/user/logout" class="navbar-logout">
             <button class="waves-effect waves-light btn user-logout-but">
               Logout
             </button>
@@ -44,7 +44,7 @@
         <div class="setup-text">Just one more step left!</div>
 
         <div class="setup-form-body">
-          <form action="/setup" class="setup-form">
+          <form action="/user/setup" class="setup-form" method="POST">
             <div class="codeforces-id">
               <div class="setup-ids">Codeforces Username</div>
               <input
@@ -107,5 +107,6 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="../js/setup.js"></script>
   </body>
 </html>

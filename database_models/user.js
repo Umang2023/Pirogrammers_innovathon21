@@ -8,6 +8,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         unique:true
     },
+    pic:{
+        type:String
+    },
+    googleId:{
+        type:String
+    },
     codeforces_handle:{
         type:String
     },

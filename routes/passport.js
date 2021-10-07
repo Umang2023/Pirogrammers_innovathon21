@@ -4,12 +4,12 @@ require('dotenv').config()
 const User  = require('../database_models/user')
 
 passport.serializeUser((user,done)=>{
-    done(null,user.id)
+    return done(null,user.id)
 })
 
 passport.deserializeUser(async (id,done)=>{
-    user = await User.findById(id)
-    done(null,user)
+    var user = await User.findById(id)
+    return done(null,user)
 })
 
 passport.use(new GoogleStrategy({
@@ -18,26 +18,31 @@ passport.use(new GoogleStrategy({
     callbackURL:process.env.REDIRECT_URI_GOOGLE,
     proxy:true
 },async function(accessToken, refreshToken, profile, done){
-    console.log(accessToken)
-    console.log(refreshToken)
-    console.log(profile)
-    var foundUser = await User.findOne({email:profile.emails[0].value})
+    try{
+        console.log(accessToken)
+        console.log(refreshToken)
+        console.log(profile)
+        var foundUser = await User.findOne({googleId:profile.id})
 
-    if(foundUser)
-    {
-        return done(null,foundUser)
-    }
-    else
-    {
-        const newUser = new User({
-            googleId:profile.id,
-            email:profile._json.email,
-            name:profile.displayName,
-            pic:profile._json.picture
-        })
+        if(foundUser)
+        {
+            return done(null,foundUser)
+        }
+        else
+        {
+            const newUser = new User({
+                googleId:profile.id,
+                email:profile._json.email,
+                name:profile.displayName,
+                pic:profile._json.picture
+            })
 
-        var savedUser = await newUser.save()
-        return done(null,savedUser)
+            var savedUser = await newUser.save()
+            return done(null,savedUser)
+        }
+    }catch(error){
+        console.log(error)
     }
+    
 }))
 

@@ -8,7 +8,11 @@ router.get('/current',async (req,res)=>{
 
 router.get('/logout',async (req,res)=>{
     req.logOut()
-    return req.user
+    return res.json(req.user)
+})
+
+router.get('/test',(req,res)=>{
+    return res.json('hi')
 })
 
 module.exports = router;

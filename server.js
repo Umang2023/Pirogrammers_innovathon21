@@ -4,9 +4,10 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 5000
 const passport=require('passport')
+const cookieSession = require('cookie-session')
 
 app.use(bodyParser.json())
-require('./routes/passport')
+
 
 mongoose.connect('mongodb://localhost:27017/jaggacode', { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -17,7 +18,16 @@ mongoose.connection.on('error', () => {
     console.log('failed to connect to database')
 })
 
-app.use(express.static('public'))
+require('./routes/passport')
+
+app.use(cookieSession({
+    maxAge:30*24*60*60*1000,
+    keys:['abcd']
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+
+
 
 app.use(require('./routes/authentication'))
 app.use('/user',require('./routes/user'))

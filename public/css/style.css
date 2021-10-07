@@ -16,7 +16,7 @@ body {
 
 .home-page-navbar {
     width: 100vw;
-    height: 60px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -75,14 +75,14 @@ body {
 
 .home-body-head {
     width: 100vw;
-    height: calc(100vh - 60px);
-    padding: 120px 80px 0 80px;
+    height: calc(100vh - 70px);
+    padding: 70px 110px 0 100px;
     display: flex;
     justify-content: space-between;
 }
 
 .home-page-info {
-    width: 50%;
+    width: 45%;
     display: flex;
     justify-content: center;
     align-items: center;

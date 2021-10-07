@@ -1,80 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="shortcut icon"
+      href="../resources/logo.png"
+      type="image/x-icon"
+    />
+    <title>JuggaCode!</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="shortcut icon" href="../resources/logo.jpeg" type="image/x-icon">
-    <title>JaggaCode!</title>
-</head>
-
-<body>
+  <body>
     <div class="dashboard-page">
-        <div class="home-page-navbar z-depth-3">
-            <div class="home-navbar-left">
-                <div class="navbar-logo">
-                    <a href="/dashboard" title="Home" class="navbar-logo-link">
-                        <div class="navbar-logo-img">
-                            <img class="navbar-img" src="../resources/logo.jpeg" alt="">
-                        </div>
-                        <div class="navbar-logo-title">
-                            JaggaCode
-                        </div>
-                    </a>
-                </div>
+      <div class="home-page-navbar z-depth-3">
+        <div class="home-navbar-left">
+          <div class="navbar-logo">
+            <a href="/dashboard" title="Home" class="navbar-logo-link">
+              <div class="navbar-logo-img">
+                <img class="navbar-img" src="../resources/logo.png" alt="" />
+              </div>
+              <div class="navbar-logo-title">JuggaCode</div>
+            </a>
+          </div>
 
-                <div class="navbar-contests">
-                    <a href="/contests" class="navbar-contests-link">
-                        <div class="navbar-contests-title">
-                            Contests
-                        </div>
-                    </a>
-                </div>
+          <div class="navbar-contests">
+            <a href="/contests" class="navbar-contests-link">
+              <div class="navbar-contests-title">Contests</div>
+            </a>
+          </div>
 
-                <div class="navbar-friendly">
-                    <a href="/friendly" class="navbar-friendly-link">
-                        <div class="navbar-friendly-title">
-                            Friendly
-                        </div>
-                    </a>
-                </div>
+          <div class="navbar-friendly">
+            <a href="/friendly" class="navbar-friendly-link">
+              <div class="navbar-friendly-title">Friendly</div>
+            </a>
+          </div>
 
-                <div class="navbar-codeforces">
-                    <a href="/codeforces" class="navbar-codeforces-link">
-                        <div class="navbar-codeforces-title">
-                            Codeforces
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="home-navbar-right">
-                <div class="navbar-profile">
-                    <a href="/profile" class="navbar-profile-link" title="My Profile">
-                        <div class="navbar-profile-img">SJ
-
-                        </div>
-                    </a>
-
-                </div>
-                <form action="/logout" class="navbar-logout">
-                    <button class="waves-effect waves-light btn user-logout-but">Logout</button>
-                </form>
-            </div>
+          <div class="navbar-codeforces">
+            <a href="/codeforces" class="navbar-codeforces-link">
+              <div class="navbar-codeforces-title">Codeforces</div>
+            </a>
+          </div>
         </div>
 
-        <div class="dashboard-page-body">
-            dashboard
-
+        <div class="home-navbar-right">
+          <div class="navbar-profile">
+            <a href="/profile" class="navbar-profile-link" title="My Profile">
+              <div class="navbar-profile-img">SJ</div>
+            </a>
+          </div>
+          <form action="/logout" class="navbar-logout">
+            <button class="waves-effect waves-light btn user-logout-but">
+              Logout
+            </button>
+          </form>
         </div>
+      </div>
 
+      <div class="dashboard-page-body">dashboard</div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="../js/home.js"></script>
-</body>
-
+  </body>
 </html>

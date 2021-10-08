@@ -181,11 +181,11 @@ input, input:active, input:placeholder-shown {
     font-family: 'Abril Fatface', cursive !important;
 }
 
-.navbar-contests-link, .navbar-codeforces-link, .navbar-friendly-link {
+.navbar-code-link, .navbar-stats-link, .navbar-practice-link {
     display: flex;
     align-items: center;
     font-size: 1.5rem;
-    color: black;
+    color: white;
     font-weight: 500;
 }
 

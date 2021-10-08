@@ -1,100 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <link rel="stylesheet" href="../css/profile.css" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link
-      rel="shortcut icon"
-      href="../resources/logo.png"
-      type="image/x-icon"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap"
-      rel="stylesheet"
-    />
-    <title>Profile</title>
-  </head>
 
-  <body>
-    <div class="profile-page">
-      <div class="home-page-navbar z-depth-3">
-        <div class="home-navbar-left">
-          <div class="navbar-logo">
-            <a href="/dashboard" title="Home" class="navbar-logo-link">
-              <div class="navbar-logo-img">
-                <img class="navbar-img" src="../resources/logo.png" alt="" />
-              </div>
-              <div class="navbar-logo-title">JuggaCode</div>
-            </a>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" href="../css/profile.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="shortcut icon" href="../resources/logo.png" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet" />
+  <title>Profile</title>
+</head>
 
-          <div class="navbar-contests">
-            <a href="/contests" class="navbar-contests-link">
-              <div class="navbar-contests-title">Contests</div>
-            </a>
-          </div>
-
-          <div class="navbar-friendly">
-            <a href="/friendly" class="navbar-friendly-link">
-              <div class="navbar-friendly-title">Friendly</div>
-            </a>
-          </div>
-
-          <div class="navbar-codeforces">
-            <a href="/codeforces" class="navbar-codeforces-link">
-              <div class="navbar-codeforces-title">Codeforces</div>
-            </a>
-          </div>
+<body>
+  <div class="profile-page">
+    <div class="home-page-navbar z-depth-3">
+      <div class="home-navbar-left">
+        <div class="navbar-logo">
+          <a href="/dashboard" title="Home" class="navbar-logo-link">
+            <div class="navbar-logo-img">
+              <img class="navbar-img" src="../resources/logo.png" alt="" />
+            </div>
+            <div class="navbar-logo-title">JuggaCode</div>
+          </a>
         </div>
 
-        <div class="home-navbar-right">
-          <div class="navbar-profile">
-            <a href="/profile" class="navbar-profile-link" title="My Profile">
-              <div class="navbar-profile-img"></div>
-            </a>
-          </div>
-          <form action="/user/logout" class="navbar-logout">
-            <button class="waves-effect waves-light btn user-logout-but">
-              Logout
-            </button>
-          </form>
+        <div class="navbar-code">
+          <a href="/code" class="navbar-code-link">
+            <div class="navbar-code-title">Code</div>
+          </a>
+        </div>
+
+        <div class="navbar-stats">
+          <a href="/stats" class="navbar-stats-link">
+            <div class="navbar-stats-title">My stats</div>
+          </a>
+        </div>
+
+        <div class="navbar-practice">
+          <a href="/practice" class="navbar-practice-link">
+            <div class="navbar-practice-title">Practice</div>
+          </a>
         </div>
       </div>
 
-      <div class="profile-page-body">
-        <div class="profile-head">My Profile!</div>
-        <div class="basic-info">
-          <div class="name-email-info">
-            <div class="name-info"></div>
+      <div class="home-navbar-right">
+        <div class="navbar-profile">
+          <a href="/profile" class="navbar-profile-link" title="My Profile">
+            <div class="navbar-profile-img"></div>
+          </a>
+        </div>
+        <form action="/user/logout" class="navbar-logout">
+          <button class="waves-effect waves-light btn user-logout-but">
+            Logout
+          </button>
+        </form>
+      </div>
+    </div>
 
-            <div class="email-info"></div>
-          </div>
+    <div class="profile-page-body">
+      <div class="profile-head">My Profile!</div>
+      <div class="basic-info">
+        <div class="name-email-info">
+          <div class="name-info"></div>
 
-          <div class="img-info"></div>
+          <div class="email-info"></div>
         </div>
 
-        <div class="handles-info">
-          <h4 styles="margin-right: 1rem;">
-            Public Profiles
-            <span
-              ><img
-                src="../resources/edit_icon.png"
-                width="28px"
-                height="30px"
-                onclick="editHandles()"
-                class="edit-image"
-            /></span>
-          </h4>
-          <!-- <div class="left-handles">
+        <div class="img-info"></div>
+      </div>
+
+      <div class="handles-info">
+        <h4 styles="margin-right: 1rem;">
+          Public Profiles
+          <span><img src="../resources/edit_icon.png" width="28px" height="30px" onclick="editHandles()"
+              class="edit-image" /></span>
+        </h4>
+        <!-- <div class="left-handles">
             <div class="codeforces-handle">
               Codeforces: <a href="">Lord_Invincible</a>
             </div>
@@ -106,32 +91,33 @@
             <div class="codechef-handle">Codechef: Lord_Invincible</div>
             <div class="leetcode-handle">Leetcode: Lord_Invincible</div>
           </div> -->
-          <div class="handles">
-            <div class="codeforces-handle">
-              <div class="handle_name">Codeforces:</div>
-              <a href="">Lord_Invincible</a>
-            </div>
+        <div class="handles">
+          <div class="codeforces-handle">
+            <div class="handle_name">Codeforces:</div>
+            <a href="">Lord_Invincible</a>
+          </div>
 
-            <div class="codechef-handle">
-              <div class="handle_name">Codechef:</div>
-              <a href="">Lord_Invincible</a>
-            </div>
-            <div class="leetcode-handle">
-              <div class="handle_name">Leetcode:</div>
-              <a href="">Lord_Invincible</a>
-            </div>
-            <div class="spoj-handle">
-              <div class="handle_name">Spoj:</div>
-              <a href="">Lord_Invincible</a>
-            </div>
-            <div class="atcoder-handle">
-              <div class="handle_name">Atcoder:</div>
-              <a href="">Lord_Invincible</a>
-            </div>
+          <div class="codechef-handle">
+            <div class="handle_name">Codechef:</div>
+            <a href="">Lord_Invincible</a>
+          </div>
+          <div class="leetcode-handle">
+            <div class="handle_name">Leetcode:</div>
+            <a href="">Lord_Invincible</a>
+          </div>
+          <div class="spoj-handle">
+            <div class="handle_name">Spoj:</div>
+            <a href="">Lord_Invincible</a>
+          </div>
+          <div class="atcoder-handle">
+            <div class="handle_name">Atcoder:</div>
+            <a href="">Lord_Invincible</a>
           </div>
         </div>
       </div>
     </div>
-  </body>
-  <script src="../js/profile.js"></script>
+  </div>
+</body>
+<script src="../js/profile.js"></script>
+
 </html>

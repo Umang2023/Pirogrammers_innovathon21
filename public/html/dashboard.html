@@ -1,82 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="shortcut icon"
+      href="../resources/logo.png"
+      type="image/x-icon"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap"
+      rel="stylesheet"
+    />
+    <title>JuggaCode!</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="shortcut icon" href="../resources/logo.png" type="image/x-icon" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet" />
-  <title>JuggaCode!</title>
-</head>
+  <body>
+    <div class="dashboard-page">
+      <div class="home-page-navbar z-depth-3">
+        <div class="home-navbar-left">
+          <div class="navbar-logo">
+            <a href="/dashboard" title="Home" class="navbar-logo-link">
+              <div class="navbar-logo-img">
+                <img class="navbar-img" src="../resources/logo.png" alt="" />
+              </div>
+              <div class="navbar-logo-title">JuggaCode</div>
+            </a>
+          </div>
 
-<body>
-  <div class="dashboard-page">
-    <div class="home-page-navbar z-depth-3">
-      <div class="home-navbar-left">
-        <div class="navbar-logo">
-          <a href="/dashboard" title="Home" class="navbar-logo-link">
-            <div class="navbar-logo-img">
-              <img class="navbar-img" src="../resources/logo.png" alt="" />
-            </div>
-            <div class="navbar-logo-title">JuggaCode</div>
-          </a>
+          <div class="navbar-code">
+            <a href="/editor" class="navbar-code-link">
+              <div class="navbar-code-title">Code</div>
+            </a>
+          </div>
+
+          <div class="navbar-stats">
+            <a href="/stats" class="navbar-stats-link">
+              <div class="navbar-stats-title">My stats</div>
+            </a>
+          </div>
+
+          <div class="navbar-practice">
+            <a href="/practice" class="navbar-practice-link">
+              <div class="navbar-practice-title">Practice</div>
+            </a>
+          </div>
         </div>
 
-        <div class="navbar-code">
-          <a href="/code" class="navbar-code-link">
-            <div class="navbar-code-title">Code</div>
-          </a>
-        </div>
-
-        <div class="navbar-stats">
-          <a href="/stats" class="navbar-stats-link">
-            <div class="navbar-stats-title">My stats</div>
-          </a>
-        </div>
-
-        <div class="navbar-practice">
-          <a href="/practice" class="navbar-practice-link">
-            <div class="navbar-practice-title">Practice</div>
-          </a>
+        <div class="home-navbar-right">
+          <div class="navbar-profile">
+            <a href="/profile" class="navbar-profile-link" title="My Profile">
+              <div class="navbar-profile-img"></div>
+            </a>
+          </div>
+          <form action="/user/logout" class="navbar-logout">
+            <button class="waves-effect waves-light btn user-logout-but">
+              Logout
+            </button>
+          </form>
         </div>
       </div>
 
-      <div class="home-navbar-right">
-        <div class="navbar-profile">
-          <a href="/profile" class="navbar-profile-link" title="My Profile">
-            <div class="navbar-profile-img"></div>
-          </a>
+      <div class="dashboard-page-body">
+        <div class="dashboard-body-content">
+          <div class="dashboard-hey">Hey,</div>
+          <div class="dashboard-username"></div>
+          <div class="dashboard-hope">Hope You're Doing Well</div>
+          <div class="dashboard-welcome">
+            Welcome to JuggaCode (Judge-a-Code)!
+          </div>
         </div>
-        <form action="/user/logout" class="navbar-logout">
-          <button class="waves-effect waves-light btn user-logout-but">
-            Logout
-          </button>
-        </form>
+        <div class="dashboard-body-img">
+          <img class="dashboard-img" src="../resources/home img.png" alt="" />
+        </div>
       </div>
     </div>
 
-    <div class="dashboard-page-body">
-      <div class="dashboard-body-content">
-        <div class="dashboard-hey">Hey,</div>
-        <div class="dashboard-username"></div>
-        <div class="dashboard-hope">Hope You're Doing Well</div>
-        <div class="dashboard-welcome">
-          Welcome to JuggaCode (Judge-a-Code)!
-        </div>
-      </div>
-      <div class="dashboard-body-img">
-        <img class="dashboard-img" src="../resources/home img.png" alt="" />
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="../js/dashboard.js"></script>
-</body>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="../js/dashboard.js"></script>
+  </body>
 </html>

@@ -12,17 +12,106 @@
     align-items: center;
 }
 
-.languageSelection {
-    font-size: 30px;
-    /* margin-bottom: 10px; */
-    font-family: Arial, Helvetica, cursive;
+#editor {
+    width: 44.8vw;
+    margin: 0px 30px 30px 0;
+    height: calc(100vh - 120px);
 }
 
-select {
-    font-size: 2rem;
+.select-options {
+    width: 44.8vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
 }
 
-#language {
-    width: 100px;
-    background-color: black;
+.select-language, .select-theme {
+    font-family: 'Abril Fatface', cursive !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.select-language>label {
+    width: 50%;
+    font-size: 1rem;
+    font-family: 'Abril Fatface', cursive !important;
+    color: black;
+}
+
+.select-language>select {
+    width: 50%;
+    font-size: 1rem;
+    font-family: 'Abril Fatface', cursive !important;
+}
+
+.select-theme>label {
+    width: 50%;
+    font-size: 1rem;
+    font-family: 'Abril Fatface', cursive !important;
+    color: black;
+    margin-left: 1rem;
+}
+
+.select-theme>select {
+    width: 50%;
+    font-size: 1rem;
+    font-family: 'Abril Fatface', cursive !important;
+}
+
+.custom-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    background: rgb(0, 0, 0);
+    background-image: none;
+    border: 1px solid black;
+    font-family: 'Abril Fatface', cursive !important;
+    padding: 0.2rem;
+}
+
+.select {
+    position: relative;
+    display: block;
+    background: #ffffff;
+    overflow: hidden;
+    border-radius: .25em;
+    width: 70%;
+    font-family: 'Abril Fatface', cursive !important;
+}
+
+.custom-select {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0.5rem;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: 'Abril Fatface', cursive !important;
+}
+
+.custom-select::-ms-expand {
+    display: none;
+}
+
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.4rem 0.5rem 0.5rem;
+    background: #000000;
+    pointer-events: none;
+}
+
+.select:hover::after {
+    color: #ffffff;
 }

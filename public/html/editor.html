@@ -24,7 +24,8 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="../codemirror-5.63.1/lib/codemirror.css" />
+    <!-- <link rel="stylesheet" href="../codemirror-5.63.1/lib/codemirror.css" /> -->
+
     <title>JuggaCode!</title>
   </head>
   <body>
@@ -40,21 +41,21 @@
             </a>
           </div>
 
-          <div class="navbar-contests">
-            <a href="/contests" class="navbar-contests-link">
-              <div class="navbar-contests-title">Contests</div>
+          <div class="navbar-code">
+            <a href="/code" class="navbar-code-link">
+              <div class="navbar-code-title">Code</div>
             </a>
           </div>
 
-          <div class="navbar-friendly">
-            <a href="/friendly" class="navbar-friendly-link">
-              <div class="navbar-friendly-title">Friendly</div>
+          <div class="navbar-stats">
+            <a href="/stats" class="navbar-stats-link">
+              <div class="navbar-stats-title">My stats</div>
             </a>
           </div>
 
-          <div class="navbar-codeforces">
-            <a href="/codeforces" class="navbar-codeforces-link">
-              <div class="navbar-codeforces-title">Codeforces</div>
+          <div class="navbar-practice">
+            <a href="/practice" class="navbar-practice-link">
+              <div class="navbar-practice-title">Practice</div>
             </a>
           </div>
         </div>
@@ -72,8 +73,44 @@
           </form>
         </div>
       </div>
-      <div class="editor-page-body">
-        <div class="languageSelection">
+      <div class="select-options">
+        <div class="select-language">
+          <label for="languages">Language : </label>
+          <div class="select">
+            <select
+              id="languages"
+              class="custom-select"
+              name="languages"
+              style="display: block"
+            >
+              <option value="null">C++</option>
+              <!-- <option value="c">C</option>
+              <option value="python2">Python</option>
+              <option value="java">Java</option> -->
+            </select>
+          </div>
+        </div>
+        <div class="select-theme">
+          <label for="themes">Editor Theme : </label>
+          <div class="select">
+            <select
+              id="themes"
+              class="custom-select"
+              name="themes"
+              style="display: block"
+            >
+              <option value="monokai">Monokai</option>
+              <option value="clouds">Clouds</option>
+              <option value="solarized_light">Solarized Light</option>
+              <option value="solarized_dark">Solarized Dark</option>
+              <option value="tomorrow_night_blue">Tomorrow Night Blue</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div id="editor" class="editor-page-body">
+        <!-- <div class="languageSelection">
           Please select a language:
           <select name="language" id="language">
             <option value="null">Select</option>
@@ -82,37 +119,22 @@
             <option value="python2">Python</option>
             <option value="java">Java</option>
           </select>
-        </div>
+        </div> -->
       </div>
     </div>
-    <!-- <table>
-      <tr>
-        <td>
-          <textarea id="code"></textarea>
-        </td>
-        <td>
-          <div class="inputArea">
-            <h3
-              class="languageSelection"
-              style="margin-bottom: 0px; margin-top: -60px"
-            >
-              Input
-            </h3>
-            <textarea id="input"></textarea>
-          </div>
-          <div class="outputArea">
-            <h3 class="languageSelection" style="margin-bottom: 0px">Output</h3>
-            <textarea id="output"></textarea>
-            <button id="compileCode">Compile</button>
-          </div>
-        </td>
-      </tr>
-    </table> -->
 
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js"></script> -->
-    <!-- <script src="./codemirror/addon/hint/show-hint.js"></script> -->
-    <!-- <script src="./codemirror/addon/edit/closebrackets.js"></script> -->
-    <script src="../codemirror-5.63.1/lib/codemirror.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/ace.min.js"
+      integrity="sha512-jB1NOQkR0yLnWmEZQTUW4REqirbskxoYNltZE+8KzXqs9gHG5mrxLR5w3TwUn6AylXkhZZWTPP894xcX/X8Kbg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/ace.js"
+      integrity="sha512-OMjy8oWtPbx9rJmoprdaQdS2rRovgTetHjiBf7RL7LvRSouoMLks5aIcgqHb6vGEAduuPdBTDCoztxLR+nv45g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="../js/editor.js"></script>
   </body>
 </html>

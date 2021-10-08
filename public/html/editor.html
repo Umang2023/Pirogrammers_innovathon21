@@ -1,135 +1,181 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/editor.css" />
-    <link
-      rel="shortcut icon"
-      href="../resources/logo.png"
-      type="image/x-icon"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap"
-      rel="stylesheet"
-    />
 
-    <title>JuggaCode!</title>
-  </head>
-  <body>
-    <div class="editor-page">
-      <div class="home-page-navbar z-depth-3">
-        <div class="home-navbar-left">
-          <div class="navbar-logo">
-            <a href="/dashboard" title="Home" class="navbar-logo-link">
-              <div class="navbar-logo-img">
-                <img class="navbar-img" src="../resources/logo.png" alt="" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/editor.css" />
+  <link rel="shortcut icon" href="../resources/logo.png" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet" />
+
+  <title>JuggaCode!</title>
+</head>
+
+<body>
+  <div class="editor-page">
+    <div class="home-page-navbar z-depth-3">
+      <div class="home-navbar-left">
+        <div class="navbar-logo">
+          <a href="/dashboard" title="Home" class="navbar-logo-link">
+            <div class="navbar-logo-img">
+              <img class="navbar-img" src="../resources/logo.png" alt="" />
+            </div>
+            <div class="navbar-logo-title">JuggaCode</div>
+          </a>
+        </div>
+
+        <div class="navbar-code">
+          <a href="/code" class="navbar-code-link">
+            <div class="navbar-code-title">Code</div>
+          </a>
+        </div>
+
+        <div class="navbar-stats">
+          <a href="/stats" class="navbar-stats-link">
+            <div class="navbar-stats-title">My stats</div>
+          </a>
+        </div>
+
+        <div class="navbar-practice">
+          <a href="/practice" class="navbar-practice-link">
+            <div class="navbar-practice-title">Practice</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="home-navbar-right">
+        <div class="navbar-profile">
+          <a href="/profile" class="navbar-profile-link" title="My Profile">
+            <div class="navbar-profile-img"></div>
+          </a>
+        </div>
+        <form action="/user/logout" class="navbar-logout">
+          <button class="waves-effect waves-light btn user-logout-but">
+            Logout
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="editor-page-body">
+      <div class="problem-editor-cont">
+        <div class="problem-cont">
+
+        </div>
+        <div class="resize-bar">
+          <div class="resize-dot">
+
+          </div>
+        </div>
+        <div class="editor-cont">
+          <div class="editor-options">
+            <div class="select-language">
+              <label for="languages">Language : </label>
+              <div class="select">
+                <select id="languages" class="custom-select" name="languages" style="display: block">
+                  <option value="null">C++</option>
+                  <option value="c">C</option>
+                  <option value="python2">Python</option>
+                  <option value="java">Java</option>
+                </select>
               </div>
-              <div class="navbar-logo-title">JuggaCode</div>
-            </a>
+            </div>
+
+            <div class="select-theme">
+              <label for="themes">Editor Theme : </label>
+              <div class="select">
+                <select id="themes" class="custom-select" name="themes" style="display: block">
+                  <option value="monokai">Monokai</option>
+                  <option value="clouds">Clouds</option>
+                  <option value="solarized_light">Solarized Light</option>
+                  <option value="solarized_dark">Solarized Dark</option>
+                  <option value="tomorrow_night_blue">Tomorrow Night Blue</option>
+                </select>
+              </div>
+            </div>
           </div>
 
-          <div class="navbar-code">
-            <a href="/code" class="navbar-code-link">
-              <div class="navbar-code-title">Code</div>
-            </a>
+          <div class="code-editor">
+            <div class="code-area">
+              <div id="editor"></div>
+            </div>
           </div>
 
-          <div class="navbar-stats">
-            <a href="/stats" class="navbar-stats-link">
-              <div class="navbar-stats-title">My stats</div>
-            </a>
-          </div>
+          <div class="run-inp-out">
+            <div class="submit-area">
+              <a class="waves-effect waves-light btn submit-code">Run</a>
+            </div>
+            <div class="inp-out-area">
+              <div class="input-area">
+                <textarea id="input_box" name="input_box" placeholder="INPUT"></textarea>
+              </div>
+              <div class="inp-out-sep">
+                <div class="inp-out-dot">
 
-          <div class="navbar-practice">
-            <a href="/practice" class="navbar-practice-link">
-              <div class="navbar-practice-title">Practice</div>
-            </a>
+                </div>
+              </div>
+              <div class="output-area">
+                <textarea id="output_box" name="output_box" placeholder="OUTPUT" readonly></textarea>
+              </div>
+            </div>
           </div>
-        </div>
-
-        <div class="home-navbar-right">
-          <div class="navbar-profile">
-            <a href="/profile" class="navbar-profile-link" title="My Profile">
-              <div class="navbar-profile-img"></div>
-            </a>
-          </div>
-          <form action="/user/logout" class="navbar-logout">
-            <button class="waves-effect waves-light btn user-logout-but">
-              Logout
-            </button>
-          </form>
-        </div>
-      </div>
-      <div class="select-options">
-        <div class="select-language">
-          <label for="languages">Language : </label>
-          <div class="select">
-            <select
-              id="languages"
-              class="custom-select"
-              name="languages"
-              style="display: block"
-            >
-              <option value="null">C++</option>
-              <!-- <option value="c">C</option>
-              <option value="python2">Python</option>
-              <option value="java">Java</option> -->
-            </select>
-          </div>
-        </div>
-        <div class="select-theme">
-          <label for="themes">Editor Theme : </label>
-          <div class="select">
-            <select
-              id="themes"
-              class="custom-select"
-              name="themes"
-              style="display: block"
-            >
-              <option value="monokai">Monokai</option>
-              <option value="clouds">Clouds</option>
-              <option value="solarized_light">Solarized Light</option>
-              <option value="solarized_dark">Solarized Dark</option>
-              <option value="tomorrow_night_blue">Tomorrow Night Blue</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div id="editor" class="item1"></div>
-        <div class="item2">
-          <textarea id="input_box" name="input_box" rows="4" cols="20"></textarea>
-        </div>
-        <div class="item3">
-          <textarea id="output_box" name="output_box" rows="4" cols="20"></textarea>
-        </div>
-        <div class="button-div">
-          <button class="waves-effect waves-light btn submit-code">Run</button>
         </div>
       </div>
     </div>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/ace.min.js"
-      integrity="sha512-jB1NOQkR0yLnWmEZQTUW4REqirbskxoYNltZE+8KzXqs9gHG5mrxLR5w3TwUn6AylXkhZZWTPP894xcX/X8Kbg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/ace.js"
-      integrity="sha512-OMjy8oWtPbx9rJmoprdaQdS2rRovgTetHjiBf7RL7LvRSouoMLks5aIcgqHb6vGEAduuPdBTDCoztxLR+nv45g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="../js/editor.js"></script>
-  </body>
+    <!-- <div class="select-options">
+      <div class="select-language">
+        <label for="languages">Language : </label>
+        <div class="select">
+          <select id="languages" class="custom-select" name="languages" style="display: block">
+            <option value="null">C++</option>
+             <option value="c">C</option>
+              <option value="python2">Python</option>
+              <option value="java">Java</option>
+          </select>
+        </div>
+      </div>
+      <div class="select-theme">
+        <label for="themes">Editor Theme : </label>
+        <div class="select">
+          <select id="themes" class="custom-select" name="themes" style="display: block">
+            <option value="monokai">Monokai</option>
+            <option value="clouds">Clouds</option>
+            <option value="solarized_light">Solarized Light</option>
+            <option value="solarized_dark">Solarized Dark</option>
+            <option value="tomorrow_night_blue">Tomorrow Night Blue</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="editor" class="item1"></div>
+      <div class="item2">
+        <textarea id="input_box" name="input_box" rows="4" cols="20"></textarea>
+      </div>
+      <div class="item3">
+        <textarea id="output_box" name="output_box" rows="4" cols="20"></textarea>
+      </div>
+      <div class="button-div">
+        <button class="waves-effect waves-light btn submit-code">Run</button>
+      </div>
+    </div> -->
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/ace.min.js"
+    integrity="sha512-jB1NOQkR0yLnWmEZQTUW4REqirbskxoYNltZE+8KzXqs9gHG5mrxLR5w3TwUn6AylXkhZZWTPP894xcX/X8Kbg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/ace.js"
+    integrity="sha512-OMjy8oWtPbx9rJmoprdaQdS2rRovgTetHjiBf7RL7LvRSouoMLks5aIcgqHb6vGEAduuPdBTDCoztxLR+nv45g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="../js/editor.js"></script>
+  <script src="../js/problem.js"></script>
+</body>
+
 </html>

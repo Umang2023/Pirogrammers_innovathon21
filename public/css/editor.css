@@ -1,89 +1,115 @@
 .editor-page {
-    height: 100vh;
-}
-
-.item1 {
-    grid-area: editor;
-}
-
-.item2 {
-    grid-area: input;
-}
-
-.item3 {
-    grid-area: output;
+    min-height: 100vh;
+    min-width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 .editor-page-body {
     width: 100vw;
     height: calc(100vh - 60px);
-    padding: 50px 100px 0 100px;
+    padding: 10px 50px 10px 50px;
+    background-color: #ECECEC;
 }
 
-#editor {
-    width: 44.8vw;
-    margin: 0px 30px 30px 0;
-    height: calc(100vh - 120px);
+.problem-editor-cont {
+    min-width: 100%;
+    max-width: 100%;
+    height: 100%;
+    display: flex;
 }
 
-.container {
-    width: 100vw;
-    display: grid;
-    grid-template-areas: 'editor input' 'editor output';
-    grid-template-columns: 45% 30%;
-    grid-gap: 10px;
-    padding: 10px;
+.problem-cont {
+    height: 100%;
+    background-color: white;
+    border-radius: 10px;
 }
 
-.button-div {
+.resize-bar {
+    height: 100%;
+    min-width: 20px;
+    max-width: 20px;
+    cursor: col-resize;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.resize-dot {
+    width: 15px;
+    height: 30px;
+    border: 5px dotted black;
+}
+
+.editor-cont {
+    height: 100%;
+    background-color: #4A4B5C;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.editor-options {
     width: 100%;
+    min-height: 50px;
+    max-height: 50px;
+    border-bottom: 1px solid #797676;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
 }
 
-.select-options {
-    width: 44.8vw;
+.select-language {
     display: flex;
+    font-family: 'Abril Fatface', cursive !important;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
+    gap: 10px;
 }
 
-.select-language, .select-theme {
-    font-family: 'Abril Fatface', cursive !important;
+.select-language>.select {
+    position: relative;
     display: flex;
-    flex-direction: row;
+    background: #ffffff;
+    overflow: hidden;
+    border-radius: 5px;
+    width: 80px;
+    height: 35px;
+    align-items: center;
+    font-family: 'Abril Fatface', cursive !important;
+}
+
+.select-language>label, .select-theme>label {
+    font-size: 1rem;
+    font-family: 'Abril Fatface', cursive !important;
+    color: white;
+}
+
+.select-language>select, .select-theme>select {
+    font-size: 1rem;
+    font-family: 'Abril Fatface', cursive !important;
+}
+
+.select-theme {
+    display: flex;
+    font-family: 'Abril Fatface', cursive !important;
     justify-content: center;
     align-items: center;
-    width: 50%;
+    margin-right: 20px;
+    flex-direction: row;
+    gap: 10px;
 }
 
-.select-language>label {
-    width: 50%;
-    font-size: 1rem;
-    font-family: 'Abril Fatface', cursive !important;
-    color: black;
-}
-
-.select-language>select {
-    width: 50%;
-    font-size: 1rem;
-    font-family: 'Abril Fatface', cursive !important;
-}
-
-.select-theme>label {
-    width: 50%;
-    font-size: 1rem;
-    font-family: 'Abril Fatface', cursive !important;
-    color: black;
-    margin-left: 1rem;
-}
-
-.select-theme>select {
-    width: 50%;
-    font-size: 1rem;
+.select-theme>.select {
+    position: relative;
+    display: flex;
+    background: #ffffff;
+    overflow: hidden;
+    border-radius: 5px;
+    width: 120px;
+    height: 35px;
+    align-items: center;
     font-family: 'Abril Fatface', cursive !important;
 }
 
@@ -93,21 +119,10 @@
     -ms-appearance: none;
     appearance: none;
     outline: 0;
-    background: rgb(0, 0, 0);
+    background: white;
     background-image: none;
-    border: 1px solid black;
     font-family: 'Abril Fatface', cursive !important;
     padding: 0.2rem;
-}
-
-.select {
-    position: relative;
-    display: block;
-    background: #ffffff;
-    overflow: hidden;
-    border-radius: .25em;
-    width: 70%;
-    font-family: 'Abril Fatface', cursive !important;
 }
 
 .custom-select {
@@ -115,7 +130,7 @@
     height: 100%;
     margin: 0;
     padding: 0.5rem;
-    color: #fff;
+    color: black;
     cursor: pointer;
     font-size: 1rem;
     font-family: 'Abril Fatface', cursive !important;
@@ -132,10 +147,91 @@
     right: 0;
     bottom: 0;
     padding: 0.4rem 0.5rem 0.5rem;
-    background: #000000;
+    background: white;
+    color: white;
     pointer-events: none;
 }
 
 .select:hover::after {
-    color: #ffffff;
+    color: black;
+}
+
+.code-editor {
+    border-bottom: 1px solid #797676;
+    height: calc(100% - (50px + 200px));
+}
+
+.run-inp-out {
+    width: 100%;
+    min-height: 200px;
+    max-height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.code-area {
+    height: 100%;
+    width: 100%;
+}
+
+#editor {
+    height: 100%;
+    width: 100%;
+}
+
+.submit-area {
+    min-height: 30px;
+    max-height: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 1px solid #797676;
+    align-items: center;
+}
+
+.submit-code {
+    height: 25px;
+    width: 60px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+.inp-out-area {
+    display: flex;
+    width: 100%;
+    min-height: 170px;
+    max-height: 170px;
+    padding: 5px;
+}
+
+.input-area, .output-area {
+    height: 100%;
+    width: 49%;
+}
+
+.inp-out-sep {
+    height: 100%;
+    width: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inp-out-dot {
+    height: 20%;
+    border: 3px dotted #797676;
+}
+
+#input_box, #output_box {
+    resize: none;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    padding: 2px;
+    color: white;
+    font-size: 1rem;
 }

@@ -38,11 +38,25 @@ function getDashboardData() {
     })
 }
 
-function loadEditor(theme) {
+async function loadEditor(theme) {
     // var editor = ace.edit("editor");
     editor.setTheme(`ace/theme/${theme}`);
     document.getElementById('editor').style.fontSize='16px';
-    setTemplate();
+    
+    var previousCode = await fetch('/code/previous').then(res=>res.json())
+
+    if(!previousCode.data || previousCode.data.length == 0)
+        setTemplate();
+    else
+    {
+        console.log(previousCode)
+        var EditSession = require("ace/edit_session").EditSession;
+        // editor.setValue(previousCode.data)
+        var cpp = new EditSession(previousCode.data)
+        editor.setSession(cpp);
+        editor.session.setMode("ace/mode/c_cpp");
+    }
+        
 }
 
 function setTemplate() {
@@ -79,7 +93,18 @@ document.querySelector('.submit-code').addEventListener('click',async ()=>{
     })
     .then(res=>res.json())
 
-    // console.log(output)
+    var savedCode = await fetch('/code/saveCode',{
+        method:"PUT",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            code:codeWritten,
+        })
+    })
+    .then(res=>res.json())
+
+    console.log(savedCode)
     document.getElementById('output_box').value = output.data.output;
 
 })

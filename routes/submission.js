@@ -67,4 +67,27 @@ router.put('/submit',authMiddleware,async(req,res)=>{
     }
 })
 
+router.put('/saveCode',authMiddleware,async(req,res)=>{
+    try{
+        var updatedUser = await User.findByIdAndUpdate(req.user.id,{
+            currentSavedCode:req.body.code
+        },{
+            new:true
+        })
+        return res.status(200).json({isError:false,data:updatedUser})
+    }catch(error){
+        console.log(error.message)
+        return res.status(400).json({isError:true,message:error.message})
+    }
+})
+
+router.get('/previous',authMiddleware,async(req,res)=>{
+    try{
+        return res.status(200).json({isError:false,data:req.user.currentSavedCode})
+    }catch(error){
+        console.log(error.message)
+        return res.status(400).json({isError:true,message:error.message})
+    }
+})
+
 module.exports = router;

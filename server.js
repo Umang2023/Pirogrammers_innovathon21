@@ -64,7 +64,7 @@ app.get('/editor', authMiddleware, handleMiddleware, (req, res) => {
 })
 
 app.get('/code', authMiddleware, handleMiddleware, (req, res) => {
-    res.sendFile(__dirname + '/public/html/code.html')
+    res.sendFile(__dirname + '/public/html/editor.html')
 })
 app.get('/stats', authMiddleware, handleMiddleware, (req, res) => {
     res.sendFile(__dirname + '/public/html/stats.html')

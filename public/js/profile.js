@@ -14,11 +14,23 @@ function fillProfile(data) {
     document.querySelector('.name-info').innerHTML = profName;
     document.querySelector('.email-info').innerHTML = profEmail;
 
-    let codeforcesContent = 'Codeforces: <a href="https://codeforces.com" target="_blank">Lord_Invincible</a>';
-    let codechefContent = 'Codechef: <a href="https://codechef.com" target="_blank">Lord_Invincible</a>';
-    let leetcodeContent = 'Leetcode: <a href="https://leetcode.com" target="_blank">Lord_Invincible</a>';
-    let spojContent = 'Spoj: <a href="https://spoj.com" target="_blank">Lord_Invincible</a>';
-    let atcoderContent = 'Atcoder: <a href="https://atcoder.jp" target="_blank">Lord_Invincible</a>';
+    var codeforcesContent='',codechefContent='',leetcodeContent='',spojContent='',atcoderContent=''
+
+    if(data.codeforces && data.codeforces.length > 0)
+    codeforcesContent = `Codeforces: <a href="https://codeforces.com/profile/${data.codeforces}" target="_blank">${data.codeforces}</a>`;
+
+
+    if(data.codechef && data.codechef.length > 0)
+    codechefContent = `Codechef: <a href="https://codechef.com/users/${data.codechef}" target="_blank">${data.codechef}</a>`;
+    
+    if(data.leetcode && data.leetcode.length > 0)
+    leetcodeContent = `Leetcode: <a href="https://leetcode.com/${data.leetcode}" target="_blank">${data.leetcode}</a>`;
+    
+    if(data.spoj && data.spoj.length > 0)
+    spojContent = `Spoj: <a href="https://spoj.com" target="_blank">${data.spoj}</a>`;
+    
+    if(data.atcoder && data.atcoder.length > 0)
+    atcoderContent = `Atcoder: <a href="https://atcoder.jp/users/${data.atcoder}" target="_blank">${data.atcoder}</a>`;
 
     document.querySelector('.codeforces-handle').innerHTML = codeforcesContent;
     document.querySelector('.codechef-handle').innerHTML = codechefContent;

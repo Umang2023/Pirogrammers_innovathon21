@@ -8,6 +8,7 @@ const cookieSession = require('cookie-session')
 const cookieParse = require('cookie-parser')
 const cookieParser = require('cookie-parser')
 const authMiddleware = require('./middleware/authMiddleware')
+const handleMiddleware = require('./middleware/handleMiddleware')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
@@ -41,11 +42,11 @@ app.get('/home',(req,res)=>{
     res.sendFile(__dirname + '/public/html/home.html')
 })
 
-app.get('/',authMiddleware,(req,res)=>{
+app.get('/',authMiddleware,handleMiddleware,(req,res)=>{
     res.sendFile(__dirname + '/public/html/dashboard.html')
 })
 
-app.get('/dashboard',authMiddleware,(req,res)=>{
+app.get('/dashboard',authMiddleware,handleMiddleware,(req,res)=>{
     res.sendFile(__dirname + '/public/html/dashboard.html')
 })
 
@@ -53,7 +54,7 @@ app.get('/setup',authMiddleware,(req,res)=>{
     res.sendFile(__dirname + '/public/html/userSetup.html')
 })
 
-app.get('/profile',authMiddleware,(req,res)=>{
+app.get('/profile',authMiddleware,handleMiddleware,(req,res)=>{
     res.sendFile(__dirname + '/public/html/profile.html')
 })
 

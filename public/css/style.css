@@ -100,6 +100,12 @@ body {
     border-radius: 50%;
 }
 
+/* SET UP PAGE STYLING*/
+
+input, input:active, input:placeholder-shown {
+    font-family: 'Abril Fatface', cursive !important;
+}
+
 .setup-page-body {
     width: 100vw;
     height: calc(100vh - 60px);
@@ -108,6 +114,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    font-family: 'Abril Fatface', cursive !important;
 }
 
 .setup-text {
@@ -126,6 +133,7 @@ body {
     width: 100%;
     flex-direction: column;
     gap: 10px;
+    padding: 2rem 0;
 }
 
 .codeforces-id, .codechef-id, .leetcode-id, .atcoder-id, .spoj-id {
@@ -138,6 +146,12 @@ body {
 
 .setup-ids {
     font-size: 1.3rem;
+    font-family: 'Abril Fatface', cursive !important;
+}
+
+.required:after {
+    content: " *";
+    color: red;
 }
 
 .setup-fields {
@@ -146,18 +160,25 @@ body {
 }
 
 .setup-form-submit {
-    margin: 30px auto 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
 }
 
 .setup-submit-but {
-    background-color: #37474f;
+    width: 40%;
+    background-color: #000000;
     border-radius: 10px;
     text-transform: none;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+    font-family: 'Abril Fatface', cursive !important;
 }
 
 .navbar-profile, .navbar-contests, .navbar-codeforces, .navbar-friendly {
     height: 100%;
+    font-family: 'Abril Fatface', cursive !important;
 }
 
 .navbar-contests-link, .navbar-codeforces-link, .navbar-friendly-link {
@@ -214,59 +235,4 @@ body {
 
 .dashboard-hope, .dashboard-welcome {
     font-size: 1.2rem;
-}
-
-.profile-page-body {
-    width: 100vw;
-    height: calc(100vh - 60px);
-    padding: 50px 100px 0 100px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-}
-
-.profile-head {
-    font-size: 3rem;
-    font-weight: 500;
-    margin-bottom: 20px;
-}
-
-.basic-info {
-    display: flex;
-    justify-content: space-between;
-    width: 60%;
-    margin-bottom: 30px;
-}
-
-.name-email-info {
-    display: flex;
-    flex-direction: column;
-    font-size: 2rem;
-    justify-content: center;
-}
-
-.img-info {
-    height: 200px;
-    width: 200px;
-}
-
-.profile-img {
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-}
-
-.handles-info {
-    display: flex;
-    width: 60%;
-}
-
-.left-handles, .right-handles {
-    display: flex;
-    width: 50%;
-    font-size: 1.5rem;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
 }

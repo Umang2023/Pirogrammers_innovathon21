@@ -37,6 +37,7 @@ app.use(cookieParser())
 
 app.use(require('./routes/authentication'))
 app.use('/user', require('./routes/user'))
+app.use('/code', require('./routes/submission'))
 
 app.get('/home', (req, res) => {
     res.sendFile(__dirname + '/public/html/home.html')
@@ -61,6 +62,17 @@ app.get('/profile', authMiddleware, handleMiddleware, (req, res) => {
 app.get('/editor', authMiddleware, handleMiddleware, (req, res) => {
     res.sendFile(__dirname + '/public/html/editor.html')
 })
+
+app.get('/code', authMiddleware, handleMiddleware, (req, res) => {
+    res.sendFile(__dirname + '/public/html/code.html')
+})
+app.get('/stats', authMiddleware, handleMiddleware, (req, res) => {
+    res.sendFile(__dirname + '/public/html/stats.html')
+})
+app.get('/practice', authMiddleware, handleMiddleware, (req, res) => {
+    res.sendFile(__dirname + '/public/html/practice.html')
+})
+
 app.listen(PORT, () => {
     console.log(`server running on port ${PORT}`)
 })

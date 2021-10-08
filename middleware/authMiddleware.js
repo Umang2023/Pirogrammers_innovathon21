@@ -5,6 +5,7 @@ const authMiddleware = async (req,res,next)=>{
         const token = req.cookies.gid
         const user=await User.findOne({googleId :token})
         // console.log(user)
+        req.user=user
         if(!user)
         throw new Error('not found')
         

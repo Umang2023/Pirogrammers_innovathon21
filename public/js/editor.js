@@ -1,4 +1,5 @@
 var userTheme = document.getElementById('themes');
+var editor = ace.edit("editor");
 
 userTheme.addEventListener('change', () => {
     var themeChoosen = userTheme.value;
@@ -19,6 +20,7 @@ userTheme.addEventListener('change', () => {
     }
 
 })
+
 function fillDashboard(data) {
     let profImg = document.createElement('img');
     profImg.src = data.pic;
@@ -35,17 +37,18 @@ function getDashboardData() {
         loadEditor('monokai');
     })
 }
-function loadEditor(theme) {
-    var editor = ace.edit("editor");
-    editor.setTheme(`ace/theme/${theme}`);
 
+function loadEditor(theme) {
+    // var editor = ace.edit("editor");
+    editor.setTheme(`ace/theme/${theme}`);
+    document.getElementById('editor').style.fontSize='16px';
     setTemplate();
 }
 
 function setTemplate() {
-    var editor = ace.edit("editor");
+    // var editor = ace.edit("editor");
     var EditSession = require("ace/edit_session").EditSession;
-    var cpp = new EditSession("#include < iostream >\r\n" +
+    var cpp = new EditSession("#include <iostream>\r\n" +
         "using namespace std;\r\n" +
         "\r\n" +
         "int main() {\r\n" +
@@ -56,6 +59,30 @@ function setTemplate() {
     editor.setSession(cpp);
     editor.session.setMode("ace/mode/c_cpp");
 }
+
+document.querySelector('.submit-code').addEventListener('click',async ()=>{
+    var codeWritten = editor.getValue();
+    var language = 'cpp17'
+    var inputGiven = document.getElementById('input_box').value;
+    // console.log(inputGiven)
+    document.getElementById('output_box').value = 'Running...'
+    var output = await fetch('/code/compileCode',{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            codeWritten,
+            language,
+            inputGiven
+        })
+    })
+    .then(res=>res.json())
+
+    // console.log(output)
+    document.getElementById('output_box').value = output.data.output;
+
+})
 
 window.onload = getDashboardData();
 

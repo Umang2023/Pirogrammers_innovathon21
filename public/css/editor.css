@@ -1,0 +1,28 @@
+.editor-page {
+    height: 100vh;
+}
+
+.editor-page-body {
+    width: 100vw;
+    height: calc(100vh - 60px);
+    padding: 50px 100px 0 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.languageSelection {
+    font-size: 30px;
+    /* margin-bottom: 10px; */
+    font-family: Arial, Helvetica, cursive;
+}
+
+select {
+    font-size: 2rem;
+}
+
+#language {
+    width: 100px;
+    background-color: black;
+}

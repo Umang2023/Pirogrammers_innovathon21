@@ -3,7 +3,7 @@ const app = express()
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 5000
-const passport=require('passport')
+const passport = require('passport')
 const cookieSession = require('cookie-session')
 const cookieParse = require('cookie-parser')
 const cookieParser = require('cookie-parser')
@@ -11,7 +11,7 @@ const authMiddleware = require('./middleware/authMiddleware')
 const handleMiddleware = require('./middleware/handleMiddleware')
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 
 mongoose.connect('mongodb://localhost:27017/jaggacode', { useNewUrlParser: true, useUnifiedTopology: true });
@@ -27,8 +27,8 @@ app.use(express.static('public'))
 require('./routes/passport')
 
 app.use(cookieSession({
-    maxAge:30*24*60*60*1000,
-    keys:['abcd']
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: ['abcd']
 }))
 app.use(passport.initialize())
 app.use(passport.session())
@@ -36,28 +36,31 @@ app.use(cookieParser())
 
 
 app.use(require('./routes/authentication'))
-app.use('/user',require('./routes/user'))
+app.use('/user', require('./routes/user'))
 
-app.get('/home',(req,res)=>{
+app.get('/home', (req, res) => {
     res.sendFile(__dirname + '/public/html/home.html')
 })
 
-app.get('/',authMiddleware,handleMiddleware,(req,res)=>{
+app.get('/', authMiddleware, handleMiddleware, (req, res) => {
     res.sendFile(__dirname + '/public/html/dashboard.html')
 })
 
-app.get('/dashboard',authMiddleware,handleMiddleware,(req,res)=>{
+app.get('/dashboard', authMiddleware, handleMiddleware, (req, res) => {
     res.sendFile(__dirname + '/public/html/dashboard.html')
 })
 
-app.get('/setup',authMiddleware,(req,res)=>{
+app.get('/setup', authMiddleware, (req, res) => {
     res.sendFile(__dirname + '/public/html/userSetup.html')
 })
 
-app.get('/profile',authMiddleware,handleMiddleware,(req,res)=>{
+app.get('/profile', authMiddleware, handleMiddleware, (req, res) => {
     res.sendFile(__dirname + '/public/html/profile.html')
 })
 
-app.listen(PORT,()=>{
+app.get('/editor', authMiddleware, handleMiddleware, (req, res) => {
+    res.sendFile(__dirname + '/public/html/editor.html')
+})
+app.listen(PORT, () => {
     console.log(`server running on port ${PORT}`)
 })

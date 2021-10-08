@@ -2,6 +2,7 @@ const express=require('express')
 const router=express.Router();
 const User  = require('../database_models/user')
 const authMiddleware = require('../middleware/authMiddleware')
+const fetch = require('node-fetch')
 
 router.get('/test',authMiddleware,(req,res)=>{
     // console.log(req.cookies)
@@ -50,6 +51,31 @@ router.get('/logout', async (req,res)=>{
     
     req.logOut()
     res.redirect('/home')
+})
+
+router.get('/submissions',authMiddleware,async(req,res)=>{
+    try{
+
+        var data = await User.aggregate([
+            {
+                $lookup:{
+                    "from":"submissions",
+                    "localField":"submissions",
+                    "foreignField":"_id",
+                    "as":"submissionDetails"
+                }
+            },
+            {
+                $project:{
+                    "submissionDetails":1
+                }
+            }
+        ])
+        return res.status(200).json({isError:false,data:data})
+    }catch(error){
+        console.log(error.message)
+        return res.status(400).json({isError:true,message:error.message})
+    }
 })
 
 module.exports = router;

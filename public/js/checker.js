@@ -12,9 +12,23 @@ export function checker(data){
         var forIndex = data[i].search('for')
         if(forIndex == -1) continue
         // console.log(forIndex,i)
-        var startingValue = getIterationStart(data[i]);
+        var [startingValue,direction] = getIterationStart(data[i]);
+        
+        // this direction signifies whether the loop is increasing or decreasing
+        // direction = false => increasing
+        // direction = true => decreasing
+        // for now i am considering increasing loop only
+        // once all the functionalities for increasing will be completed
+        // the same will be done for decreasing as well
+
+        // console.log("sv = " + startingValue + " dir = " + direction)
+
         var endValue = getTotalIterations(data[i])
-        console.log("total iterations = " , Math.abs(endValue - startingValue + 1))
+
+        var [symbol,number] = getIterationChange(data[i])
+        console.log("symbol = " + symbol + " number = " + number + " total = " + Math.abs(endValue - startingValue + 1) + " end = " + endValue + " start = " + startingValue)
+        var totalIterations = countIterations(Math.abs(endValue - startingValue + 1) , number, symbol)
+        console.log("total iterations = " , totalIterations)
     }
 
     // console.log(data)
@@ -28,19 +42,63 @@ function getIterationStart(data)
         data.indexOf(";")
     );
 
+    var lastSemicolon = data.lastIndexOf(";")
+    var containsNegative = false
+
+    for(var i=lastSemicolon; i<data.length; ++i)
+    {
+        if(data[i] == '-')
+        {
+            containsNegative=true
+            break
+        }
+    }
+
     startingValue = parseInt(startingValue)
     // console.log(startingValue)
-    return startingValue;
+    return [startingValue,containsNegative];
 }
 
 function getIterationEnd(data)
 {
-
+    
 }
 
 function getIterationChange(data)
 {
+    data = data.replace(/\s/g,'')
+    var lastSemicolon = data.lastIndexOf(";")
+    var symbol=0;
 
+    for(var i=lastSemicolon; i<data.length; ++i)
+    {
+        if(data[i] == '+')
+        {
+            symbol=0;
+            break;
+        }
+        else if(data[i] == '-')
+        {
+            symbol=1;
+            break;
+        }
+        else if(data[i] == '*')
+        {
+            symbol=2;
+            break;
+        }
+        else if(data[i] == '/')
+        {
+            symbol=3;
+            break;
+        }
+    }
+
+    var numberString = data.substring(lastSemicolon)
+    numberString = numberString.replace(/[^0-9]/g,'')
+    var number = parseInt(numberString)
+
+    return [symbol,number]
 }
 
 function getTotalIterations(data)
@@ -85,4 +143,25 @@ function evaluateAnswer(data, start)
     eval(data)
     // console.log(flag)
     return flag
+}
+
+function countIterations(total, number, symbol)
+{
+    if(number == 0)
+    {
+        return 1e9
+    }
+
+    if(total == 0 || total == 1)
+    return total
+
+    var toDivide=1;
+    if(symbol == 0 || symbol == 1)
+    {
+        return Math.floor(total/number)
+    }
+    else
+    {
+        return Math.floor(Math.log10(total) / Math.log10(number));
+    }
 }

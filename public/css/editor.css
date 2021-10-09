@@ -5,6 +5,10 @@
     overflow-x: hidden;
 }
 
+body {
+    font-family: 'Abril Fatface', cursive !important;
+}
+
 .editor-page-body {
     width: 100vw;
     height: calc(100vh - 60px);
@@ -291,7 +295,7 @@ textarea:placeholder-shown {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    font-family: cursive;
+    font-family: 'Gideon Roman', cursive;
     width: 100%;
     height: calc(100% - 50px);
 }
@@ -364,7 +368,6 @@ textarea:placeholder-shown {
     border-bottom: 1px solid;
     font-size: 1.1rem;
 }
-
 
 .hidden {
     display: none;

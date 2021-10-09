@@ -87,6 +87,13 @@ body {
     justify-content: center;
     align-items: center;
     text-align: justify;
+    font-family: 'Gideon Roman', cursive !important;
+    font-size: 1.5rem;
+}
+
+.home-page-info>p>strong {
+    color: black;
+    font-weight: 900;
 }
 
 .home-page-img, .dashboard-body-img {

@@ -95,6 +95,8 @@ function chipChanger() {
             let prevChild = probList.children[prevInd];
             prevChild.style.removeProperty("color");
             prevChild.style.removeProperty("background-color");
+            document.querySelector(`.problem-body${prevInd + 1}`).classList.add('hidden');
+            document.querySelector(`.problem-body${i + 1}`).classList.remove('hidden');
             prevInd = i;
         })
     }

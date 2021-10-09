@@ -167,7 +167,191 @@
                 [1,2,3,4],[1,2,4,3],[1,3,2,4],[1,3,4,2],[1,4,2,3],[2,1,3,4],[2,3,1,4],[2,3,4,1],[2,4,1,3],[3,1,2,4],[3,4,1,2],[4,1,2,3].
               </p>
             </div>
+          </div>
 
+          <div class="problem-body2 hidden">
+            <div class="problem-head">
+              <div class="problem-title">
+                Contest Start
+              </div>
+              <div class="problem-time">
+                Time Limit: 1 second
+              </div>
+              <div class="problem-memory">
+                Memory Limit: 256 megabytes
+              </div>
+            </div>
+
+            <div class="problem-statement">
+              <p>There are n people participating in some contest, they start participating in x minutes intervals. That
+                means the first participant starts at time 0, the second participant starts at time x, the third — at
+                time 2⋅x, and so on.</p>
+              <p>Duration of contest is t minutes for each participant, so the first participant finishes the contest at
+                time t, the second — at time t+x, and so on. When a participant finishes the contest, their
+                dissatisfaction equals to the number of participants that started the contest (or starting it now), but
+                haven't yet finished it.</p>
+              <p>Determine the sum of dissatisfaction of all participants.</p>
+            </div>
+
+            <div class="problem-input">
+              <div class="problem-input-head">
+                Input
+              </div>
+              <p>The first line contains a single integer k (1 ≤ k ≤ 1000) — the number of test cases.</p>
+              <p>Each of the next k lines contains three integers n, x, t (1 ≤ n,x,t ≤ 2⋅10<sup>9</sup>) — the number of
+                participants, the start interval and the contest duration.</p>
+            </div>
+
+            <div class="problem-output">
+              <div class="problem-output-head">
+                Output
+              </div>
+              <p>Print k lines, in the i-th line print the total dissatisfaction of participants in the i-th test case.
+              </p>
+            </div>
+
+            <div class="problem-sample">
+              <div class="problem-sample-head">
+                Sample Test Case
+              </div>
+              <div class="problem-table">
+                <div class="table-input">
+                  Input
+                </div>
+                <div class="table-input-content">
+                  <p>4</p>
+                  <p>4 2 5</p>
+                  <p>3 1 2</p>
+                  <p>3 3 10</p>
+                  <p>2000000000 1 2000000000</p>
+                </div>
+                <div class="table-output">
+                  Output
+                </div>
+                <div class="table-output-content">
+                  <p>5</p>
+                  <p>3</p>
+                  <p>3</p>
+                  <p>1999999999000000000</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="problem-note">
+              <div class="problem-note-head">
+                Note
+              </div>
+              <p>In the first example the first participant starts at 0 and finishes at time 5. By that time the second
+                and the third participants start, so the dissatisfaction of the first participant is 2.</p>
+              <p>The second participant starts at time 2 and finishes at time 7. By that time the third the fourth
+                participants start, so the dissatisfaction of the second participant is 2.</p>
+              <p>The third participant starts at 4 and finishes at 9. By that time the fourth participant starts, so the
+                dissatisfaction of the third participant is 1.</p>
+              <p>The fourth participant starts at 6 and finishes at 11. By time 11 everyone finishes the contest, so the
+                dissatisfaction of the fourth participant is 0.</p>
+              <p>In the second example the first participant starts at 0 and finishes at time 2. By that time the second
+                participants starts, and the third starts at exactly time 2. So the dissatisfaction of the first
+                participant is 2.</p>
+              <p>The second participant starts at time 1 and finishes at time 3. At that time the third participant is
+                solving the contest.</p>
+            </div>
+          </div>
+
+          <div class="problem-body3 hidden">
+            <div class="problem-head">
+              <div class="problem-title">
+                Slay the Dragon
+              </div>
+              <div class="problem-time">
+                Time Limit: 2 seconds
+              </div>
+              <div class="problem-memory">
+                Memory Limit: 256 megabytes
+              </div>
+            </div>
+
+            <div class="problem-statement">
+              <p>Recently, Petya learned about a new game "Slay the Dragon". As the name suggests, the player will have
+                to fight with dragons. To defeat a dragon, you have to kill it and defend your castle. To do this, the
+                player has a squad of n heroes, the strength of the i-th hero is equal to ai.</p>
+              <p>According to the rules of the game, exactly one hero should go kill the dragon, all the others will
+                defend the castle. If the dragon's defense is equal to x, then you have to send a hero with a strength
+                of at least x to kill it. If the dragon's attack power is y, then the total strength of the heroes
+                defending the castle should be at least y.</p>
+              <p>The player can increase the strength of any hero by 1 for one gold coin. This operation can be done any
+                number of times.</p>
+              <p>There are m dragons in the game, the i-th of them has defense equal to xi and attack power equal to yi.
+                Petya was wondering what is the minimum number of coins he needs to spend to defeat the i-th dragon.</p>
+              <p>Note that the task is solved independently for each dragon (improvements are not saved).</p>
+            </div>
+
+            <div class="problem-input">
+              <div class="problem-input-head">
+                Input
+              </div>
+              <p>The first line contains a single integer n (2 ≤ n ≤ 2⋅10<sup>5</sup>) — number of heroes.</p>
+              <p>The second line contains n integers a1,a2,…,an (1 ≤ ai ≤ 10<sup>12</sup>), where ai is the strength of
+                the i-th hero.</p>
+              <p>The third line contains a single integer m (1 ≤ m ≤ 2⋅10<sup>5</sup>) — the number of dragons.</p>
+              <p>The next m lines contain two integers each, xi and yi (1 ≤ xi ≤ 10<sup>12</sup>;1 ≤ yi ≤
+                10<sup>18</sup>) — defense and attack power of the i-th dragon.</p>
+            </div>
+
+            <div class="problem-output">
+              <div class="problem-output-head">
+                Output
+              </div>
+              <p>Print m lines, i-th of which contains a single integer — the minimum number of coins that should be
+                spent to defeat the i-th dragon.
+              </p>
+            </div>
+
+            <div class="problem-sample">
+              <div class="problem-sample-head">
+                Sample Test Case
+              </div>
+              <div class="problem-table">
+                <div class="table-input">
+                  Input
+                </div>
+                <div class="table-input-content">
+                  <p>4</p>
+                  <p>3 6 2 3</p>
+                  <p>5</p>
+                  <p>3 12</p>
+                  <p>7 9</p>
+                  <p>4 14</p>
+                  <p>1 10</p>
+                  <p>8 7</p>
+                </div>
+                <div class="table-output">
+                  Output
+                </div>
+                <div class="table-output-content">
+                  <p>1</p>
+                  <p>2</p>
+                  <p>4</p>
+                  <p>0</p>
+                  <p>2</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="problem-note">
+              <div class="problem-note-head">
+                Note
+              </div>
+              <p>To defeat the first dragon, you can increase the strength of the third hero by 1, then the strength of
+                the heroes will be equal to [3,6,3,3]. To kill the dragon, you can choose the first hero.</p>
+              <p>To defeat the second dragon, you can increase the forces of the second and third heroes by 1, then the
+                strength of the heroes will be equal to [3,7,3,3]. To kill the dragon, you can choose a second hero.</p>
+              <p>To defeat the third dragon, you can increase the strength of all the heroes by 1, then the strength of
+                the heroes will be equal to [4,7,3,4]. To kill the dragon, you can choose a fourth hero.</p>
+              <p>To defeat the fourth dragon, you don't need to improve the heroes and choose a third hero to kill the
+                dragon.</p>
+              <p>To defeat the fifth dragon, you can increase the strength of the second hero by 2, then the strength of
+                the heroes will be equal to [3,8,2,3]. To kill the dragon, you can choose a second hero.</p>
+            </div>
           </div>
 
         </div>

@@ -56,8 +56,8 @@ const mouseMoveHandlerLeft = function (e) {
     editCont.style.userSelect = "none";
     editCont.style.pointerEvents = "none";
 
-    console.log({dx, dy});
-    console.log({leftWidth, rightWidth});
+    // console.log({dx, dy});
+    // console.log({leftWidth, rightWidth});
 
     document.body.style.cursor = "col-resize";
 };

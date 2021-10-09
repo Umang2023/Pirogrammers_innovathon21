@@ -65,8 +65,113 @@
     <div class="editor-page-body">
       <div class="problem-editor-cont">
         <div class="problem-cont">
+          <div class="problem-selector">
+            <div class="problem-list">
+              <div class="problem-chip">
+                Problem 1
+              </div>
+              <div class="problem-chip">
+                Problem 2
+              </div>
+              <div class="problem-chip">
+                Problem 3
+              </div>
+            </div>
+          </div>
+
+          <div class="problem-body">
+            <div class="problem-head">
+              <div class="problem-title">
+                CQXYM Count Permutations
+              </div>
+              <div class="problem-time">
+                Time Limit: 1 second
+              </div>
+              <div class="problem-memory">
+                Memory Limit: 256 megabytes
+              </div>
+            </div>
+
+            <div class="problem-statement">
+              <p>CQXYM is counting permutations length of 2n.</p>
+              <p>A permutation is an array consisting of n distinct integers from 1 to n in arbitrary order. For
+                example, [2,3,1,5,4] is a permutation, but [1,2,2] is not a permutation (2 appears twice in the array)
+                and [1,3,4] is also not a permutation (n=3 but there is 4 in the array).</p>
+              <p>A permutation p(length of 2n) will be counted only if the number of i satisfying pi &#60; pi+1 is no
+                less
+                than n. For example:</p>
+              <ul>
+                <li>Permutation [1,2,3,4] will count, because the number of such i that pi &#60; pi+1 equals 3 (i=1,
+                  i=2, i=3).</li>
+                <li>Permutation [3,2,1,4] won't count, because the number of such i that pi &#60; pi+1 equals 1 (i=3).
+                </li>
+              </ul>
+              <p>CQXYM wants you to help him to count the number of such permutations modulo 1000000007
+                (10<sup>9</sup>+7).</p>
+            </div>
+
+            <div class="problem-input">
+              <div class="problem-input-head">
+                Input
+              </div>
+              <p>The input consists of multiple test cases.</p>
+              <p>The first line contains an integer t(t ≥ 1) — the number of test cases. The description of the test
+                cases follows.</p>
+              <p>Only one line of each test case contains an integer n(1 ≤ n ≤ 10<sup>5</sup>).</p>
+              <p>It is guaranteed that the sum of n over all test cases does not exceed 10<sup>5</sup></p>
+            </div>
+
+            <div class="problem-output">
+              <div class="problem-output-head">
+                Output
+              </div>
+              <p>For each test case, print the answer in a single line.</p>
+            </div>
+
+            <div class="problem-sample">
+              <div class="problem-sample-head">
+                Sample Test Case
+              </div>
+              <div class="problem-table">
+                <div class="table-input">
+                  Input
+                </div>
+                <div class="table-input-content">
+                  <p>4</p>
+                  <p>1</p>
+                  <p>2</p>
+                  <p>9</p>
+                  <p>91234</p>
+                </div>
+                <div class="table-output">
+                  Output
+                </div>
+                <div class="table-output-content">
+                  <p>1</p>
+                  <p>12</p>
+                  <p>830455698</p>
+                  <p>890287984</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="problem-note">
+              <div class="problem-note-head">
+                Note
+              </div>
+              <p>n = 1, there is only one permutation that satisfies the condition: [1,2].</p>
+              <p>In permutation [1,2], p1 &#60; p2, and there is one i = 1 satisfy the condition. Since 1 ≥ n, this
+                permutation should be counted. In permutation [2,1], p1 &#60; p2. Because 0 &#62; n, this permutation
+                should not be counted.</p>
+              <p>n = 2 , there are 12 permutations: <br>
+                [1,2,3,4],[1,2,4,3],[1,3,2,4],[1,3,4,2],[1,4,2,3],[2,1,3,4],[2,3,1,4],[2,3,4,1],[2,4,1,3],[3,1,2,4],[3,4,1,2],[4,1,2,3].
+              </p>
+            </div>
+
+          </div>
 
         </div>
+
         <div class="resize-bar">
           <div class="resize-dot">
 

@@ -3,22 +3,22 @@ var editor = ace.edit("editor");
 
 import {checker} from './checker.js'
 
-// setInterval(async () => {
-//     var codeWritten = editor.getValue()
+setInterval(async () => {
+    var codeWritten = editor.getValue()
     
-//     var savedCode = await fetch('/code/saveCode',{
-//         method:"PUT",
-//         headers:{
-//             "Content-Type":"application/json"
-//         },
-//         body:JSON.stringify({
-//             code:codeWritten,
-//         })
-//     })
-//     .then(res=>res.json())
+    var savedCode = await fetch('/code/saveCode',{
+        method:"PUT",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            code:codeWritten,
+        })
+    })
+    .then(res=>res.json())
 
-//     // console.log(savedCode)
-// }, 1000*30);
+    // console.log(savedCode)
+}, 1000*30);
 
 userTheme.addEventListener('change', () => {
     var themeChoosen = userTheme.value;
@@ -98,7 +98,7 @@ document.querySelector('.submit-code').addEventListener('click',async ()=>{
     var language = 'cpp17'
     var inputGiven = document.getElementById('input_box').value;
     // console.log(inputGiven)
-    // checker(codeWritten)
+    checker(codeWritten)
     document.getElementById('output_box').value = 'Running...'
     var output = await fetch('/code/compileCode',{
         method:"POST",

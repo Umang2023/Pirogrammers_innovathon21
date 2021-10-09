@@ -75,3 +75,29 @@ const mouseUpHandlerLeft = function () {
     document.removeEventListener("mousemove", mouseMoveHandlerLeft);
     document.removeEventListener("mouseup", mouseUpHandlerLeft);
 };
+
+const probList = document.querySelector('.problem-list');
+function setDefaultChip() {
+    let defaultChip = probList.children[0];
+    defaultChip.style.backgroundColor = '#413F3F';
+    defaultChip.style.color = 'white';
+}
+
+setDefaultChip();
+
+function chipChanger() {
+    let prevInd = 0;
+    for (let i = 0; i < probList.children.length; i++) {
+        let currChild = probList.children[i];
+        currChild.addEventListener('click', function() {
+            currChild.style.backgroundColor = "#413F3F";
+            currChild.style.color = "white";
+            let prevChild = probList.children[prevInd];
+            prevChild.style.removeProperty("color");
+            prevChild.style.removeProperty("background-color");
+            prevInd = i;
+        })
+    }
+}
+
+chipChanger();

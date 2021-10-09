@@ -34,9 +34,13 @@ function fillUserInfo() {
             myImg.src = data.result[0].avatar;
             myImg.setAttribute('class', 'cf-profile-img');
             document.querySelector('.cf-profile-img-div').appendChild(myImg);
+            console.log(data.result[0].lastName, typeof (data.result[0].lastName));
+            let profName = capitalizeFirstLetter(data.result[0].firstName);
+            if (data.result[0].lastName) {
+                profName += " " + capitalizeFirstLetter(data.result[0].lastName);
+            }
 
-            let profName = capitalizeFirstLetter(data.result[0].firstName) + " " +
-                capitalizeFirstLetter(data.result[0].lastName);
+
             // profName.setAttribute('class', 'cf-name');
             document.querySelector('.cf-name-div').innerHTML = profName;
 
@@ -78,7 +82,7 @@ window.onload = getUserData();
 //Charts work
 function generateRatingChart(rating_change_graph) {
     let labels = [];
-    let datapoints = [0]
+    let datapoints = []
     rating_change_graph.forEach((change) => {
         let dateObj = change.x;
 
@@ -93,6 +97,16 @@ function generateRatingChart(rating_change_graph) {
         labels.push(newDate);
         datapoints.push(change.y);
     })
+    console.table(labels.length)
+    console.table(datapoints.length)
+    let currDate = new Date();
+    var shortMonthName = new Intl.DateTimeFormat("en-US", { month: "short" }).format;
+    let month = shortMonthName(currDate)
+    let day = currDate.getUTCDate();
+    let year = currDate.getUTCFullYear();
+    let newDate = "";
+    newDate = day + " " + month + " " + year;
+    labels.push(newDate);
     const data = {
         labels: labels,
         datasets: [{
@@ -111,7 +125,7 @@ function generateRatingChart(rating_change_graph) {
             // backgroundColor: 'rgb(255, 255, 255)',
             // color: 'rgb(0,0,0)'
             scales: {
-                y: {
+                x: {
                     beginAtZero: true
                 }
             }

@@ -7,7 +7,7 @@ body {
     font-family: 'Abril Fatface', cursive !important;
 }
 
-.home-page, .setup-page, .dashboard-page, .profile-page {
+.home-page, .setup-page, .dashboard-page, .profile-page, .practice-page {
     min-height: 100vh;
     min-width: 100vw;
     max-width: 100vw;
@@ -181,7 +181,7 @@ input, input:active, input:placeholder-shown {
     font-family: 'Abril Fatface', cursive !important;
 }
 
-.navbar-code-link, .navbar-stats-link, .navbar-practice-link {
+.navbar-code-link, .navbar-stats-link, .navbar-practice-link, .navbar-submissions-link {
     display: flex;
     align-items: center;
     font-size: 1.5rem;

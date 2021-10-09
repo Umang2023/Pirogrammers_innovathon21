@@ -72,7 +72,9 @@ app.get('/stats', authMiddleware, handleMiddleware, (req, res) => {
 app.get('/practice', authMiddleware, handleMiddleware, (req, res) => {
     res.sendFile(__dirname + '/public/html/practice.html')
 })
-
+app.get('/submissions', authMiddleware, handleMiddleware, (req, res) => {
+    res.sendFile(__dirname + '/public/html/submissions.html')
+})
 app.listen(PORT, () => {
     console.log(`server running on port ${PORT}`)
 })

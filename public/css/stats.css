@@ -1,0 +1,180 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Abril Fatface', cursive !important;
+}
+
+.stats-page {
+    min-height: 100vh;
+    min-width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+.stats-page-navbar {
+    /* width: 100vw; */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 20px;
+    background-color: black;
+}
+
+.stats-page-body {
+    width: 100vw;
+    height: calc(100vh - 60px);
+    padding: 50px 0;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; */
+}
+
+.stats-navbar-left, .stats-navbar-right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.navbar-logo {
+    height: 100%;
+    margin-right: 15px;
+}
+
+.navbar-logo-link {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.navbar-logo-link:hover {
+    color: #26a69a;
+}
+
+.navbar-logo-img {
+    height: 40px;
+    width: 40px;
+}
+
+.navbar-img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.navbar-profile, .navbar-contests, .navbar-codeforces, .navbar-friendly {
+    height: 100%;
+    font-family: 'Abril Fatface', cursive !important;
+}
+
+.navbar-code-link, .navbar-stats-link, .navbar-practice-link, .navbar-submissions-link {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.navbar-profile-link {
+    color: white;
+    align-items: center;
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.navbar-profile-img {
+    height: 40px;
+    width: 40px;
+}
+
+.nav-prof-img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.user-logout-but {
+    background-color: white;
+    border-radius: 10px;
+    text-transform: none;
+    font-size: 1.2rem;
+    color: black;
+    font-family: 'Abril Fatface', cursive !important;
+}
+
+.stats-info-container {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50px 50px 0;
+}
+
+.identity-div {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.cf-profile-img-div {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cf-profile-img-div>img {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+.cf-name-div {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.stats-div {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+    font-size: 1.5rem;
+    padding: 20px;
+}
+
+.canvas-container {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 100px;
+}
+
+#myChart {
+    width: 100%;
+    background-color: transparent;
+    color: black;
+}

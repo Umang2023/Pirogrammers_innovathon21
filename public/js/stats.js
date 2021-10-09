@@ -1,8 +1,11 @@
 //codeforces data fetch
 var userName = '';
 function capitalizeFirstLetter(string) {
-    string = string.toLowerCase();
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    if (string.length > 0) {
+        string = string.toLowerCase();
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    return string;
 }
 function getCfData() {
     fetch(`https://codeforces.com/api/user.rating?handle=${userName}`)

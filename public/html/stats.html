@@ -1,76 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="../css/stats.css" />
+    <link
+      rel="shortcut icon"
+      href="../resources/logo.png"
+      type="image/x-icon"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap"
+      rel="stylesheet"
+    />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-  <link rel="stylesheet" href="../css/stats.css" />
-  <link rel="shortcut icon" href="../resources/logo.png" type="image/x-icon" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet" />
+    <title>JuggaCode!</title>
+  </head>
+  <body>
+    <div class="stats-page">
+      <div class="stats-page-navbar z-depth-3">
+        <div class="stats-navbar-left">
+          <div class="navbar-logo">
+            <a href="/dashboard" title="Home" class="navbar-logo-link">
+              <div class="navbar-logo-img">
+                <img class="navbar-img" src="../resources/logo.png" alt="" />
+              </div>
+              <div class="navbar-logo-title">JuggaCode</div>
+            </a>
+          </div>
 
-  <title>JuggaCode!</title>
-</head>
+          <div class="navbar-code">
+            <a href="/editor" class="navbar-code-link">
+              <div class="navbar-code-title">Code</div>
+            </a>
+          </div>
 
-<body>
-  <div class="stats-page">
-    <div class="stats-page-navbar z-depth-3">
-      <div class="stats-navbar-left">
-        <div class="navbar-logo">
-          <a href="/dashboard" title="Home" class="navbar-logo-link">
-            <div class="navbar-logo-img">
-              <img class="navbar-img" src="../resources/logo.png" alt="" />
-            </div>
-            <div class="navbar-logo-title">JuggaCode</div>
-          </a>
+          <div class="navbar-stats">
+            <a href="/stats" class="navbar-stats-link">
+              <div class="navbar-stats-title">My stats</div>
+            </a>
+          </div>
+
+          <div class="navbar-practice">
+            <a href="/practice" class="navbar-practice-link">
+              <div class="navbar-practice-title">Practice</div>
+            </a>
+          </div>
+
+          <div class="navbar-submissions">
+            <a href="/submissions" class="navbar-submissions-link">
+              <div class="navbar-submissions-title">My Submissions</div>
+            </a>
+          </div>
         </div>
 
-        <div class="navbar-code">
-          <a href="/editor" class="navbar-code-link">
-            <div class="navbar-code-title">Code</div>
-          </a>
-        </div>
-
-        <div class="navbar-stats">
-          <a href="/stats" class="navbar-stats-link">
-            <div class="navbar-stats-title">My stats</div>
-          </a>
-        </div>
-
-        <div class="navbar-practice">
-          <a href="/practice" class="navbar-practice-link">
-            <div class="navbar-practice-title">Practice</div>
-          </a>
-        </div>
-
-        <div class="navbar-submissions">
-          <a href="/submissions" class="navbar-submissions-link">
-            <div class="navbar-submissions-title">My Submissions</div>
-          </a>
+        <div class="stats-navbar-right">
+          <div class="navbar-profile">
+            <a href="/profile" class="navbar-profile-link" title="My Profile">
+              <div class="navbar-profile-img"></div>
+            </a>
+          </div>
+          <form action="/user/logout" class="navbar-logout">
+            <button class="waves-effect waves-light btn user-logout-but">
+              Logout
+            </button>
+          </form>
         </div>
       </div>
-
-      <div class="stats-navbar-right">
-        <div class="navbar-profile">
-          <a href="/profile" class="navbar-profile-link" title="My Profile">
-            <div class="navbar-profile-img"></div>
-          </a>
-        </div>
-        <form action="/user/logout" class="navbar-logout">
-          <button class="waves-effect waves-light btn user-logout-but">
-            Logout
-          </button>
-        </form>
-      </div>
-    </div>
-    <div class="stats-page-body">
-      <div class="stats-info-container">
-        <div class="identity-div">
-          <div class="cf-profile-img-div"></div>
-          <div class="cf-name-div"></div>
+      <div class="stats-page-body">
+        <div class="stats-info-container">
+          <div class="identity-div">
+            <div class="cf-profile-img-div"></div>
+            <div class="cf-name-div"></div>
+          </div>
+          <div class="stats-div">
+            <div class="current-rating-div"></div>
+            <div class="current-rank-div"></div>
+            <div class="max-rating-div"></div>
+            <div class="max-rank-div"></div>
+            <div class="friend-count"></div>
+          </div>
         </div>
         <div class="canvas-container">
           <div class="rating-div">
@@ -85,22 +101,11 @@
           <div class="rat-subm-div">
             <canvas id="rating-subm"></canvas>
           </div>
-        <div class="stats-div">
-          <div class="current-rating-div"></div>
-          <div class="current-rank-div"></div>
-          <div class="max-rating-div"></div>
-          <div class="max-rank-div"></div>
-          <div class="friend-count"></div>
         </div>
       </div>
-      <div class="canvas-container">
-        <canvas id="myChart"></canvas>
-      </div>
     </div>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="../js/stats.js"></script>
-</body>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/stats.js"></script>
+  </body>
 </html>

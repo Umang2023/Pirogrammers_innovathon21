@@ -1,6 +1,25 @@
 var userTheme = document.getElementById('themes');
 var editor = ace.edit("editor");
 
+import {checker} from './checker.js'
+
+// setInterval(async () => {
+//     var codeWritten = editor.getValue()
+    
+//     var savedCode = await fetch('/code/saveCode',{
+//         method:"PUT",
+//         headers:{
+//             "Content-Type":"application/json"
+//         },
+//         body:JSON.stringify({
+//             code:codeWritten,
+//         })
+//     })
+//     .then(res=>res.json())
+
+//     // console.log(savedCode)
+// }, 1000*30);
+
 userTheme.addEventListener('change', () => {
     var themeChoosen = userTheme.value;
 
@@ -49,7 +68,7 @@ async function loadEditor(theme) {
         setTemplate();
     else
     {
-        console.log(previousCode)
+        // console.log(previousCode)
         var EditSession = require("ace/edit_session").EditSession;
         // editor.setValue(previousCode.data)
         var cpp = new EditSession(previousCode.data)
@@ -79,6 +98,7 @@ document.querySelector('.submit-code').addEventListener('click',async ()=>{
     var language = 'cpp17'
     var inputGiven = document.getElementById('input_box').value;
     // console.log(inputGiven)
+    // checker(codeWritten)
     document.getElementById('output_box').value = 'Running...'
     var output = await fetch('/code/compileCode',{
         method:"POST",

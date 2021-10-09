@@ -7,6 +7,12 @@ function capitalizeFirstLetter(string) {
     }
     return string;
 }
+function compare(a, b) {
+    return b.y - a.y;
+}
+function comparator(a, b) {
+    return a.x - b.x;
+}
 function getCfData() {
     fetch(`https://codeforces.com/api/user.rating?handle=${userName}`)
         .then(res => res.json())
@@ -39,11 +45,7 @@ function fillUserInfo() {
             if (data.result[0].lastName) {
                 profName += " " + capitalizeFirstLetter(data.result[0].lastName);
             }
-
-
-            // profName.setAttribute('class', 'cf-name');
             document.querySelector('.cf-name-div').innerHTML = profName;
-
             let currRating = data.result[0].rating;
             let maxRating = data.result[0].maxRating;
             let currRank = data.result[0].rank;
@@ -54,8 +56,6 @@ function fillUserInfo() {
             document.querySelector('.max-rating-div').innerHTML = `Max Rating : ${maxRating}`;
             document.querySelector('.max-rank-div').innerHTML = `Max Rank : ${maxRank}`;
             document.querySelector('.friend-count').innerHTML = `Friends : ${friends}`;
-
-
         })
 }
 function fillNavbar(data) {
@@ -73,6 +73,7 @@ function getUserData() {
     }).then((data) => {
         fillNavbar(data);
         getCfData();
+        fillProblemTags();
     })
 }
 
@@ -113,9 +114,10 @@ function generateRatingChart(rating_change_graph) {
             label: 'Rating Change',
             borderColor: 'rgb(0, 0, 0)',
             data: datapoints,
-            backgroundColor: 'rgb(0, 0, 0)',
+            backgroundColor: 'rgba(0,255,255,0.1)',
             pointBackgroundColor: 'rgb(0, 0, 153)',
-            pointBorderColor: 'rgb(0, 0, 153)'
+            pointBorderColor: 'rgb(0, 0, 153)',
+            fill: true
         }]
     };
     const config = {
@@ -133,6 +135,259 @@ function generateRatingChart(rating_change_graph) {
     };
     var myChart = new Chart(
         document.getElementById('myChart'),
+        config
+    );
+}
+function fillProblemTags() {
+    fetch(`https://codeforces.com/api/user.status?handle=${userName}&from=1`)
+        .then(res => res.json())
+        .then((data) => {
+            let arr = [];
+            let dtype = [];
+            let i = 0;
+            let nmap = new Map();
+            var accepted = 0;
+            var wrong_answer = 0;
+            var tle = 0;
+            var memory_limit = 0;
+            var runtime_error = 0;
+            var acceptedSet = new Set()
+            var rating_wise_submissions = new Map()
+            data.result.forEach(function (element) {
+
+                if (element.verdict === "OK") {
+                    i += 1;
+                    arr[i] = element.problem.tags;
+                }
+                var unique = element.problem.contestId.toString() + element.problem.index
+                if (element.verdict === "OK" && !acceptedSet.has(unique)) {
+                    ++accepted;
+                    // console.log(element)
+                    acceptedSet.add(unique)
+                    var questionRating = element.problem.rating;
+                    if (rating_wise_submissions.has(questionRating)) {
+                        rating_wise_submissions.set(questionRating, rating_wise_submissions.get(questionRating) + 1)
+                    }
+                    else {
+                        rating_wise_submissions.set(questionRating, 1);
+                    }
+
+                }
+                if (element.verdict === "TIME_LIMIT_EXCEEDED")
+                    tle += 1;
+                if (element.verdict === "WRONG_ANSWER")
+                    wrong_answer += 1;
+                if (element.verdict === "MEMORY_LIMIT_EXCEEDED")
+                    memory_limit += 1;
+                if (element.verdict === "RUNTIME_ERROR")
+                    runtime_error += 1;
+            });
+            i = 0;
+            arr.forEach(function (element) {
+                element.forEach(function (str) {
+                    if (nmap.has(str) == false)
+                        nmap.set(str, 1);
+                    else {
+                        let v = nmap.get(str);
+                        nmap.set(str, v + 1);
+                    }
+                })
+            })
+            for (let [key, value] of nmap) {
+                //console.log(key + ' = ' + value);
+                dtype[i] = { label: key, y: value };
+                i += 1;
+            }
+            dtype.sort(compare);
+            generateTagChart(dtype);
+            //console.table(dtype);
+            //console.log(accepted, tle, wrong_answer, memory_limit, runtime_error);
+            let subms = [];
+            subms.push({ label: "Accepted", y: accepted });
+            subms.push({ label: "Wrong Answer", y: wrong_answer });
+            subms.push({ label: "Time Limit Exceeded", y: tle });
+            subms.push({ label: "Memory Limit Exceeded", y: memory_limit });
+            subms.push({ label: "Runtime Error", y: runtime_error });
+
+            //console.table(subms);
+            generateSubmissionRadGraph(subms);
+            var list_rating_wise_submissions = []
+            const iterator = rating_wise_submissions[Symbol.iterator]();
+            for (const item of iterator) {
+                if (item[0] != undefined && item[1] != undefined) {
+                    var temp_object = {
+                        x: item[0],
+                        y: item[1]
+                    }
+                    list_rating_wise_submissions.push(temp_object)
+                }
+
+            }
+
+            list_rating_wise_submissions.sort(comparator)
+            // console.log(list_rating_wise_submissions)
+            generateBarGraph(list_rating_wise_submissions)
+        })
+}
+function generateTagChart(submissionsObj) {
+    let labels = [];
+    let datapoints = [];
+
+    submissionsObj.forEach((submission) => {
+
+        labels.push(submission.label);
+        datapoints.push(submission.y);
+
+    })
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Problems solved',
+
+            data: datapoints,
+            backgroundColor: [
+                'rgba(229, 0, 206, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 51, 51, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 205, 86, 1)',
+                'rgba(0, 199, 53, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(153, 0, 153, 1)'
+            ],
+            borderColor: [
+                'rgba(229, 0, 206, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 51, 51, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 205, 86, 1)',
+                'rgba(0, 199, 53, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(153, 0, 153, 1)'
+            ],
+            pointBackgroundColor: 'rgb(0, 0, 153)',
+            pointBorderColor: 'rgb(0, 0, 153)',
+            fill: true
+        }]
+    };
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            indexAxis: 'y'
+        }
+    };
+    var myChart = new Chart(
+        document.getElementById('tags'),
+        config
+    );
+}
+
+function generateSubmissionRadGraph(submissions) {
+    let labels = [];
+    let datapoints = [];
+    submissions.forEach((submission) => {
+        labels.push(submission.label);
+        datapoints.push(submission.y);
+
+    })
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Submissions History',
+
+            data: datapoints,
+            backgroundColor: [
+                'rgba(0, 199, 53, 1)',
+                'rgba(255, 51, 51, 1)',
+
+                'rgba(255, 205, 86, 1)',
+
+                'rgba(75, 192, 192, 1)',
+                'rgba(54, 162, 235, 1)',
+
+            ],
+            borderColor: [
+                'rgba(0, 199, 53, 1)',
+                'rgba(255, 51, 51, 1)',
+
+                'rgba(255, 205, 86, 1)',
+
+                'rgba(75, 192, 192, 1)',
+                'rgba(54, 162, 235, 1)',
+            ],
+            pointBackgroundColor: 'rgb(0, 0, 153)',
+            pointBorderColor: 'rgb(0, 0, 153)',
+            fill: true
+        }]
+    };
+    const config = {
+        type: 'doughnut',
+        data: data,
+
+    };
+    var myChart = new Chart(
+        document.getElementById('submissions'),
+        config
+    );
+}
+
+function generateBarGraph(submissions) {
+    let labels = [];
+    let datapoints = [];
+    submissions.forEach((submission) => {
+
+        labels.push(submission.x);
+        datapoints.push(submission.y);
+
+    })
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Rating wise submissions',
+
+            data: datapoints,
+            backgroundColor: [
+                'rgba(229, 0, 206, 1)',
+                'rgba(0, 199, 53, 1)',
+                'rgba(255, 51, 51, 1)',
+
+                'rgba(255, 205, 86, 1)',
+
+                'rgba(75, 192, 192, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(153, 0, 153, 1)'
+
+            ],
+            borderColor: [
+                'rgba(229, 0, 206, 1)',
+                'rgba(0, 199, 53, 1)',
+                'rgba(255, 51, 51, 1)',
+
+                'rgba(255, 205, 86, 1)',
+
+                'rgba(75, 192, 192, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(153, 0, 153, 1)'
+            ],
+            pointBackgroundColor: 'rgb(0, 0, 153)',
+            pointBorderColor: 'rgb(0, 0, 153)',
+            fill: true
+        }]
+    };
+    const config = {
+        type: 'bar',
+        data: data,
+
+    };
+    var myChart = new Chart(
+        document.getElementById('rating-subm'),
         config
     );
 }

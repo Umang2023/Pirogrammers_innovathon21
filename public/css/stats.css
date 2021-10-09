@@ -173,7 +173,35 @@ body {
     padding: 50px 100px;
 }
 
+.rating-div {
+    width: 80vw;
+}
+
 #myChart {
     width: 1000px;
     background-color: transparent;
+}
+
+.problems-div {
+    width: 80vw;
+}
+
+#tags {
+    margin-top: 100px;
+}
+
+.submissions-div {
+    width: 30vw;
+}
+
+#submissions {
+    margin-top: 100px;
+}
+
+.rat-subm-div {
+    width: 60vw;
+}
+
+#rating-subm {
+    margin-top: 100px;
 }

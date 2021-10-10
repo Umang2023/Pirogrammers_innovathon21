@@ -103,3 +103,13 @@ function chipChanger() {
 }
 
 chipChanger();
+
+document.querySelector('.check-code').addEventListener('click', function() {
+    document.querySelector('.run-inp-out').classList.add('hidden');
+    document.querySelector('.check-console').classList.remove('hidden');
+})
+
+document.querySelector('.cancel-code').addEventListener('click', function() {
+    document.querySelector('.check-console').classList.add('hidden');
+    document.querySelector('.run-inp-out').classList.remove('hidden');
+})

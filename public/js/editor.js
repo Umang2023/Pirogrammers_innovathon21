@@ -93,7 +93,7 @@ function setTemplate() {
     editor.session.setMode("ace/mode/c_cpp");
 }
 
-document.querySelector('.submit-code').addEventListener('click',async ()=>{
+document.querySelector('.run-code').addEventListener('click',async ()=>{
     var codeWritten = editor.getValue();
     var language = 'cpp17'
     var inputGiven = document.getElementById('input_box').value;

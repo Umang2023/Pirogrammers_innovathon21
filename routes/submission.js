@@ -43,7 +43,7 @@ router.put('/submit',authMiddleware,async(req,res)=>{
         var verdict = req.body.verdict
         var language = req.body.language
         var question = req.body.question
-        // console.log(req.user)
+        console.log(code)
 
         var newSubmission = new Submission({
             code,
@@ -144,6 +144,14 @@ router.get('/submissions',authMiddleware,async(req,res)=>{
         console.log(error.message)
         return res.status(400).json({isError:true,message:error.message})
     }
+})
+
+router.get('/submissions/:id',authMiddleware,async(req,res)=>{
+    var id = req.params.id
+    console.log(id)
+    var code = await Submission.findById(id)
+    console.log(code)
+    return res.json({data:code})
 })
 
 module.exports = router;

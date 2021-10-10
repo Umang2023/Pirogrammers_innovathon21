@@ -11,12 +11,13 @@ const cookieParse = require('cookie-parser')
 const cookieParser = require('cookie-parser')
 const authMiddleware = require('./middleware/authMiddleware')
 const handleMiddleware = require('./middleware/handleMiddleware')
+const Submission  = require('./database_models/submission')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 // console.log(process.env.MONGO_URL)
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-// mongoose.connect('mongodb://localhost:27017/jaggacode', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost:27017/jaggacode', { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.connection.on('connected', () => {
     console.log('connected to database')
@@ -74,9 +75,16 @@ app.get('/stats', authMiddleware, handleMiddleware, (req, res) => {
 app.get('/practice', authMiddleware, handleMiddleware, (req, res) => {
     res.sendFile(__dirname + '/public/html/practice.html')
 })
+
 app.get('/submissions', authMiddleware, handleMiddleware, (req, res) => {
     res.sendFile(__dirname + '/public/html/submissions.html')
 })
+
+app.get('/submissions/:id', authMiddleware, handleMiddleware, async (req, res) => {
+    
+    res.sendFile(__dirname + '/public/html/userCode.html')
+})
+
 app.listen(PORT, () => {
     console.log(`server running on port ${PORT}`)
 })

@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded',async ()=>{
     .then(res=>res.json())
 
     fillSubmissionList(data.data)
-    // console.log(data.data)
+    console.log(data.data)
 
 })
 
@@ -27,21 +27,27 @@ async function fillSubmissionList(data)
     data.forEach(element => {
         var idDiv = document.createElement('div')
         idDiv.innerHTML = element._id
+        idDiv.style = "margin-top:4%"
         
         var questionDiv = document.createElement('div')
         questionDiv.innerHTML = element.question
+        questionDiv.style = "margin-top:4%"
         
         var userDiv = document.createElement('div')
         userDiv.innerHTML = element.userHandle[0].codeforces
+        userDiv.style = "margin-top:4%"
 
         var verdictDiv = document.createElement('div')
         verdictDiv.innerHTML = element.verdict
+        verdictDiv.style = "margin-top:4%"
 
         submissionList.appendChild(idDiv)
         submissionList.appendChild(questionDiv)
         submissionList.appendChild(userDiv)
         submissionList.appendChild(verdictDiv)
+
     });
+    
 }
 
 yourOnly_checkbox.addEventListener('change',()=>{
@@ -82,6 +88,7 @@ document.querySelector('.filter-apply-button').addEventListener('click',async ()
     // console.log(data)
     fillSubmissionList(data.data)
 })
+
 
 window.onload = getUserData();
 

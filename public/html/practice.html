@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="../resources/logo.png" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet" />
     <title>JuggaCode!</title>
 </head>
@@ -67,7 +68,49 @@
             </div>
         </div>
 
+        <div class="practice-page-body">
+            <div class="get-practice">
+                <div class="get-practice-head">
+                    Enter Details
+                </div>
+                <div class="practice-number">
+                    <div class="get-number">
+                        Enter number of problems: 
+                    </div>
+                    <input class="problem-no" type="number">
+                </div>
+                <div class="practice-difficulty">
+                    <div class="get-min-dif">
+                        Enter min difficulty range: 
+                    </div>
+                    <input class="problem-min-dif" type="number">
+                </div>
+                <div class="practice-difficulty">
+                    <div class="get-max-dif">
+                        Enter max difficulty range: 
+                    </div>
+                    <input class="problem-max-dif" type="number">
+                </div>
+                <div class="practice-tags">
+                    <div class="get-tags">
+                        Enter problem tags: 
+                    </div>
+                    <div class="chips chips-placeholder chips-autocomplete">
+                    </div>
+                </div>
+                <div class="practice-submit">
+                    <a class="waves-effect waves-light get-prob-but">Get Problems</a>
+                </div>
+            </div>
+
+            <div class="practice-list">
+            </div>
+        </div>
+
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="../js/practice.js"></script>
 </body>
 
 </html>

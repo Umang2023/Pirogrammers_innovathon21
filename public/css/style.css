@@ -243,3 +243,61 @@ input, input:active, input:placeholder-shown {
 .dashboard-hope, .dashboard-welcome {
     font-size: 1.2rem;
 }
+
+.practice-page-body {
+    width: 100vw;
+    height: calc(100vh - 60px);
+    padding: 100px 100px 0 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.get-practice {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.get-practice-head {
+    display: flex;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    width: 50%;
+}
+
+.practice-number, .practice-difficulty, .practice-tags {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    font-size: 1.2rem;
+    width: 50%;
+    align-items: center;
+}
+
+.get-prob-but {
+    font-size: 1.5rem;
+}
+
+.practice-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+
+.practice-card {
+    display: flex;
+    width: 50%;
+    background-color: #4A4B5C;
+    color: white;
+    height: 100px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    align-items: center;
+    justify-content: center;
+}

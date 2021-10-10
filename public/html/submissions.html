@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/submission.css" />
 
   <link rel="shortcut icon" href="../resources/logo.png" type="image/x-icon" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -67,6 +68,42 @@
       </div>
     </div>
     This is the submissions page
+
+    <div class="submission-content">
+      <div class="submission-list">
+        this is list
+      </div>
+  
+      <div class="filters">
+        <p> Apply filters</p>
+        <div class="question-selector">
+          <p>Question</p>
+          <select name="ques" id="ques" class="browser-default">
+            <option value="All">All</option>
+            <option value="CQXYM Count Permutations">CQXYM Count Permutations</option>
+            <option value="Contest Start">Contest Start</option>
+            <option value="Slay the Dragon">Slay the Dragon</option>
+          </select>
+
+          <p>Verdict</p>
+          <select name="verd" id="verd" class="browser-default">
+            <option value="0">All</option>
+            <option value="1">Accepted</option>
+            <option value="2">Wrong Answer</option>
+            <option value="3">Time Limit Exceeded</option>
+            <option value="3">Run Time Error</option>
+          </select>
+          
+          <p>User</p>
+          <input type="text" id="user-submission"/>
+
+          <button class="btn filter-apply-button">Apply</button>
+        </div>
+      </div>
+    </div>
+
+    
+
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

@@ -1,5 +1,8 @@
+var globalData = "";
+
 export function checker(data){
     // console.log(data)
+    globalData = data
     data=data.split('\n')
     for(var i=0; i<data.length; ++i)
     {
@@ -129,8 +132,41 @@ function getTotalIterations(data)
     return ans;
 }
 
+function isNumeric(n) 
+{
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
 function evaluateAnswer(data, start)
 {
+    var index_of_for_symbol = data.indexOf('<')
+
+    if(data[i+1] == '=')
+    ++index_of_for_symbol;
+
+    var last_semicolon_index = data.lastIndexOf(';')
+
+    var number = ""
+    for(var i=index_of_for_symbol+1; i<last_semicolon_index; ++i)
+    {
+        number=number + data[i]
+    }
+
+    console.log(number , index_of_for_symbol, last_semicolon_index)
+    if(isNumeric(number) == true)
+    {
+        number = parseInt(number)
+        console.log("number = " + number)
+    }
+    else
+    {
+        console.log("not a number")
+        number = search_for_variable(number)
+        console.log("number found = ",number)
+        data = data.substring(0,index_of_for_symbol+1) + number.toString() + data.substring(last_semicolon_index)
+    }
+    
+
     // console.log('in')
     var first_equal_index = data.indexOf('=')
     var first_semicolon_index = data.indexOf(';')
@@ -164,4 +200,26 @@ function countIterations(total, number, symbol)
     {
         return Math.floor(Math.log10(total) / Math.log10(number));
     }
+}
+
+function search_for_variable(variableName)
+{
+    console.log('in search ' + variableName)
+    var data = globalData
+    data = data.split('\n')
+
+    var toFind = variableName + '='
+    console.log("to find " , toFind)
+    for(var i=0; i<data.length; ++i)
+    {
+        data[i] = data[i].replace(/\s/g,'')
+        
+        if(data[i].includes(toFind))
+        {
+            var index = data[i].indexOf(toFind) + toFind.length
+            return parseInt(data[i].substring(index).match(/\d+/)[0])
+        }
+    }
+
+    return 0;
 }

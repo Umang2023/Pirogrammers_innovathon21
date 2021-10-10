@@ -90,4 +90,68 @@ router.get('/previous',authMiddleware,async(req,res)=>{
     }
 })
 
+router.get('/submissions',authMiddleware,async(req,res)=>{
+    try{
+        var aggList = []
+
+        var temp = {
+            $lookup:{
+                from:"users",
+                localField:"submittedBy",
+                foreignField:"_id",
+                as:"userHandle"
+            },
+        }
+
+        aggList.push(temp)
+
+        var verdict=req.query.verdictSelected
+        var question=req.query.questionSelected
+        var user=req.query.userSelected
+
+        if(verdict && parseInt(verdict) != 0)
+        {
+            // console.log('verdict')
+            if(verdict == 1)
+                verdict = 'acc'
+            else if(verdict == 2)
+                verdict = 'wa'
+            else if(verdict == 3)
+                verdict = 'tle'
+            else
+                verdict = 'rte'
+
+            var temp={
+                $match:{verdict:verdict}
+            }
+            aggList.push(temp)
+        }
+
+        if(question && question != 'All')
+        {
+            // console.log('question')
+            var temp={
+                $match:{question:question}
+            }
+            aggList.push(temp)
+        }
+
+        if(user && user.length > 0)
+        {
+            // console.log(user)
+            var temp={
+                $match:{"userHandle.codeforces":user}
+            }
+            aggList.push(temp)
+        }
+
+        var result = await Submission.aggregate(aggList)
+        return res.status(200).json({isError:false,data:result})
+
+    }catch(error){
+        console.log(error.message)
+        return res.status(400).json({isError:true,message:error.message})
+    }
+})
+
 module.exports = router;

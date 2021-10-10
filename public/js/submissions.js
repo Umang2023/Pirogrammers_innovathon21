@@ -13,5 +13,17 @@ function getUserData() {
     })
 }
 
+document.querySelector('.filter-apply-button').addEventListener('click',async ()=>{
+    var questionSelected = document.getElementById('ques').value
+    var verdictSelected = document.getElementById('verd').value
+    var userSelected = document.getElementById('user-submission').value
+    console.log(questionSelected,verdictSelected,userSelected)
+
+    var data = await fetch(`/code/submissions?verdictSelected=${verdictSelected}&questionSelected=${questionSelected}&userSelected=${userSelected}`)
+    .then(res=>res.json())
+
+    console.log(data)
+})
+
 window.onload = getUserData();
 

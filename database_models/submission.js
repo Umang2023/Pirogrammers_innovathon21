@@ -7,8 +7,8 @@ const submissionSchema = new mongoose.Schema({
     code:{
         type:String
     },
-    questionNumber:{
-        type:Number
+    question:{
+        type:String
     },
     verdict:{
         type:String

@@ -3,3 +3,15 @@
     display: grid;
     grid-template-columns: 80% 20%;
 }
+
+#your{
+    opacity: 1;
+    position: relative;
+    pointer-events: all;
+}
+
+.submission-list
+{
+    display: grid;
+    grid-template-columns: 10% 50% 20% 20%;
+}

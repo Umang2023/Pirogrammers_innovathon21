@@ -1,3 +1,44 @@
+var yourOnly_checkbox = document.getElementById('your')
+var userSubmission = document.getElementById('user-submission')
+var submissionList = document.querySelector('.submission-list')
+
+document.addEventListener('DOMContentLoaded',async ()=>{
+    if(yourOnly_checkbox.checked)
+    {
+        userSubmission.disabled = true
+    }
+
+    var data = await fetch(`/code/submissions`)
+    .then(res=>res.json())
+
+    fillSubmissionList(data.data)
+
+})
+
+async function fillSubmissionList(data)
+{
+    var i=3;
+    while(submissionList.children.length > i)
+    {
+        submissionList.removeChild(submissionList.children[i])
+    }
+
+    // data.forEach(element => {
+        
+    // });
+}
+
+yourOnly_checkbox.addEventListener('change',()=>{
+    if(yourOnly_checkbox.checked)
+    {
+        userSubmission.disabled = true
+    }
+    else
+    {
+        userSubmission.disabled = false
+    }
+})
+
 function fillNavbar(data) {
     let profImg = document.createElement('img');
     profImg.src = data.pic;

@@ -42,12 +42,14 @@ router.put('/submit',authMiddleware,async(req,res)=>{
         var code = req.body.code;
         var verdict = req.body.verdict
         var language = req.body.language
+        var question = req.body.question
         // console.log(req.user)
 
         var newSubmission = new Submission({
             code,
             language,
             verdict,
+            question,
             submittedBy:req.user.id
         })
 
@@ -107,7 +109,7 @@ router.get('/submissions',authMiddleware,async(req,res)=>{
 
         var verdict=req.query.verdictSelected
         var question=req.query.questionSelected
-        var user=req.query.userSelected
+        var user=req.query.userSelected || req.user.codeforces
 
         if(verdict && parseInt(verdict) != 0)
         {

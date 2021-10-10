@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded',async ()=>{
-    var data = await fetch('/code/submissions/')
+    var id = window.location.pathname.split('/')[2]
+    var data = await fetch(`/code/submissions/${id}`)
     .then(res=>res.json())
 
     // console.log('hre')

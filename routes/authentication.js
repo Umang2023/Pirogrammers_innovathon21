@@ -12,7 +12,8 @@ router.get('/auth/google/callback',passport.authenticate('google'),(req,res)=>{
         httpOnly: true
     })
 
-    res.redirect('https://juggacode.herokuapp.com/')
+    res.redirect('https:localhost:5000/')
+    // res.redirect('https://juggacode.herokuapp.com/')
 })
 
 module.exports = router;

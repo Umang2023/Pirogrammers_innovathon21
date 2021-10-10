@@ -25,9 +25,11 @@ async function fillSubmissionList(data)
     }
 
     data.forEach(element => {
-        var idDiv = document.createElement('div')
+        var idDiv = document.createElement('a')
         idDiv.innerHTML = element._id
         idDiv.style = "margin-top:4%"
+        idDiv.href = `/submissions/${element._id}`
+        idDiv.target = '_blank'
         
         var questionDiv = document.createElement('div')
         questionDiv.innerHTML = element.question
@@ -50,13 +52,19 @@ async function fillSubmissionList(data)
     
 }
 
-yourOnly_checkbox.addEventListener('change',()=>{
+yourOnly_checkbox.addEventListener('change',async ()=>{
     if(yourOnly_checkbox.checked)
     {
         userSubmission.disabled = true
     }
     else
     {
+        var data = await fetch(`/code/submissions?userSelected=All`)
+        .then(res=>res.json())
+
+        console.log('here is checked change')
+        console.log(data.data)
+        fillSubmissionList(data.data)
         userSubmission.disabled = false
     }
 })
@@ -80,6 +88,13 @@ document.querySelector('.filter-apply-button').addEventListener('click',async ()
     var questionSelected = document.getElementById('ques').value
     var verdictSelected = document.getElementById('verd').value
     var userSelected = document.getElementById('user-submission').value
+    
+    if(!userSelected)
+    {
+        if(!yourOnly_checkbox.checked)
+        userSelected = 'All'
+    }
+
     console.log(questionSelected,verdictSelected,userSelected)
 
     var data = await fetch(`/code/submissions?verdictSelected=${verdictSelected}&questionSelected=${questionSelected}&userSelected=${userSelected}`)

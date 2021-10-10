@@ -128,7 +128,7 @@ router.get('/submissions',authMiddleware,async(req,res)=>{
             aggList.push(temp)
         }
 
-        if(user && user.length > 0)
+        if(user && user.length > 0 && user != 'All')
         {
             // console.log(user)
             var temp={

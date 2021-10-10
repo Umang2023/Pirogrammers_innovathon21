@@ -173,6 +173,7 @@ function loopBreak(loopArr) {
 
 function getIterNo(loopDetails) {
     let totIter = 0;
+    let iterTrack = [];
     console.log(loopDetails.length);
     for (let i = 0; i < loopDetails.length; i++) {
         let start = loopDetails[i].start;
@@ -187,6 +188,7 @@ function getIterNo(loopDetails) {
             }
             if (loopDetails[i].greaterEqual === 1 || loopDetails[i].greaterThan === 1) {
                 totIter++;
+                iterTrack.push(1);
                 continue;
             }
             let currIter = end - start;
@@ -194,6 +196,7 @@ function getIterNo(loopDetails) {
                 currIter++;
             }
             totIter += Math.ceil(currIter / jump);
+            iterTrack.push(Math.ceil(currIter / jump));
         } else if (loopDetails[i].subtract === 1) {
             if (start < end) {
                 return Infinity;
@@ -203,6 +206,7 @@ function getIterNo(loopDetails) {
             }
             if (loopDetails[i].lessEqual === 1 || loopDetails[i].lessThan === 1) {
                 totIter++;
+                iterTrack.push(1);
                 continue;
             }
             let currIter = start - end;
@@ -210,6 +214,7 @@ function getIterNo(loopDetails) {
                 currIter++;
             }
             totIter += Math.ceil(currIter / jump);
+            iterTrack.push(Math.ceil(currIter / jump));
         } else if (loopDetails[i].multiply === 1) {
             if (start > end) {
                 return Infinity;
@@ -219,6 +224,7 @@ function getIterNo(loopDetails) {
             }
             if (loopDetails[i].greaterEqual === 1 || loopDetails[i].greaterThan === 1) {
                 totIter++;
+                iterTrack.push(1);
                 continue;
             }
             let currIter = end - start;
@@ -226,6 +232,7 @@ function getIterNo(loopDetails) {
                 currIter++;
             }
             totIter += Math.ceil(Math.log(currIter) / Math.log(jump));
+            iterTrack.push(Math.ceil(Math.log(currIter) / Math.log(jump)));
         } else {
             if (start < end) {
                 return Infinity;
@@ -235,6 +242,7 @@ function getIterNo(loopDetails) {
             }
             if (loopDetails[i].lessEqual === 1 || loopDetails[i].lessThan === 1) {
                 totIter++;
+                iterTrack.push(1);
                 continue;
             }
             let currIter = start - end;
@@ -242,9 +250,17 @@ function getIterNo(loopDetails) {
                 currIter++;
             }
             totIter += Math.ceil(Math.log(currIter) / Math.log(jump));
+            iterTrack.push(Math.ceil(Math.log(currIter) / Math.log(jump)));
         }
-        console.log(totIter);
+
+        if (loopDetails[i].parent !== -1) {
+            let firstIter = iterTrack[loopDetails[i].parent - 1];
+            let secondIter = iterTrack[i];
+            totIter = totIter - firstIter - secondIter;
+            totIter += (firstIter * secondIter);
+        }
     }
+    console.log(totIter);
 }
 
 document.querySelector('.check-code').addEventListener('click', function() {

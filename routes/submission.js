@@ -111,18 +111,8 @@ router.get('/submissions',authMiddleware,async(req,res)=>{
         var question=req.query.questionSelected
         var user=req.query.userSelected || req.user.codeforces
 
-        if(verdict && parseInt(verdict) != 0)
+        if(verdict && verdict.length > 0 && verdict != 'All')
         {
-            // console.log('verdict')
-            if(verdict == 1)
-                verdict = 'acc'
-            else if(verdict == 2)
-                verdict = 'wa'
-            else if(verdict == 3)
-                verdict = 'tle'
-            else
-                verdict = 'rte'
-
             var temp={
                 $match:{verdict:verdict}
             }

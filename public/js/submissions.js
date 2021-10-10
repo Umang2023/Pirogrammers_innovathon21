@@ -12,20 +12,36 @@ document.addEventListener('DOMContentLoaded',async ()=>{
     .then(res=>res.json())
 
     fillSubmissionList(data.data)
+    // console.log(data.data)
 
 })
 
 async function fillSubmissionList(data)
 {
-    var i=3;
+    var i=4;
     while(submissionList.children.length > i)
     {
-        submissionList.removeChild(submissionList.children[i])
+        submissionList.removeChild(submissionList.children[i-1])
     }
 
-    // data.forEach(element => {
+    data.forEach(element => {
+        var idDiv = document.createElement('div')
+        idDiv.innerHTML = element._id
         
-    // });
+        var questionDiv = document.createElement('div')
+        questionDiv.innerHTML = element.question
+        
+        var userDiv = document.createElement('div')
+        userDiv.innerHTML = element.userHandle[0].codeforces
+
+        var verdictDiv = document.createElement('div')
+        verdictDiv.innerHTML = element.verdict
+
+        submissionList.appendChild(idDiv)
+        submissionList.appendChild(questionDiv)
+        submissionList.appendChild(userDiv)
+        submissionList.appendChild(verdictDiv)
+    });
 }
 
 yourOnly_checkbox.addEventListener('change',()=>{
@@ -63,7 +79,8 @@ document.querySelector('.filter-apply-button').addEventListener('click',async ()
     var data = await fetch(`/code/submissions?verdictSelected=${verdictSelected}&questionSelected=${questionSelected}&userSelected=${userSelected}`)
     .then(res=>res.json())
 
-    console.log(data)
+    // console.log(data)
+    fillSubmissionList(data.data)
 })
 
 window.onload = getUserData();

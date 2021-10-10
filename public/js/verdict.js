@@ -3,6 +3,10 @@ let prob1Max = 100000;
 let prob2Max = 2000000000;
 let prob3Max = 200000;
 
+let tleVerdict = "There are chances of Time Limit Exceeded!";
+let intOverflow = "There are chances of integer overflow!";
+let memoryOverflow = "There are chances of Memory Limit Exceeded";
+
 function getLoops(codeData) {
     let n = codeData.length;
     let loopArr = [];
@@ -167,11 +171,89 @@ function loopBreak(loopArr) {
     return loopDetails;
 }
 
+function getIterNo(loopDetails) {
+    let totIter = 0;
+    console.log(loopDetails.length);
+    for (let i = 0; i < loopDetails.length; i++) {
+        let start = loopDetails[i].start;
+        let end = loopDetails[i].end;
+        let jump = loopDetails[i].jump;
+        if (loopDetails[i].add === 1) {
+            if (start > end) {
+                return Infinity;
+            }
+            if (start === end && loopDetails[i].lessEqual === 0) {
+                return Infinity;
+            }
+            if (loopDetails[i].greaterEqual === 1 || loopDetails[i].greaterThan === 1) {
+                totIter++;
+                continue;
+            }
+            let currIter = end - start;
+            if (loopDetails[i].lessEqual === 1) {
+                currIter++;
+            }
+            totIter += Math.ceil(currIter / jump);
+        } else if (loopDetails[i].subtract === 1) {
+            if (start < end) {
+                return Infinity;
+            }
+            if (start === end && loopDetails[i].greaterEqual === 0) {
+                return Infinity;
+            }
+            if (loopDetails[i].lessEqual === 1 || loopDetails[i].lessThan === 1) {
+                totIter++;
+                continue;
+            }
+            let currIter = start - end;
+            if (loopDetails[i].greaterEqual === 1) {
+                currIter++;
+            }
+            totIter += Math.ceil(currIter / jump);
+        } else if (loopDetails[i].multiply === 1) {
+            if (start > end) {
+                return Infinity;
+            }
+            if (start === end && loopDetails[i].lessEqual === 0) {
+                return Infinity;
+            }
+            if (loopDetails[i].greaterEqual === 1 || loopDetails[i].greaterThan === 1) {
+                totIter++;
+                continue;
+            }
+            let currIter = end - start;
+            if (loopDetails[i].lessEqual === 1) {
+                currIter++;
+            }
+            totIter += Math.ceil(Math.log(currIter) / Math.log(jump));
+        } else {
+            if (start < end) {
+                return Infinity;
+            }
+            if (start === end && loopDetails[i].greaterEqual === 0) {
+                return Infinity;
+            }
+            if (loopDetails[i].lessEqual === 1 || loopDetails[i].lessThan === 1) {
+                totIter++;
+                continue;
+            }
+            let currIter = start - end;
+            if (loopDetails[i].greaterEqual === 1) {
+                currIter++;
+            }
+            totIter += Math.ceil(Math.log(currIter) / Math.log(jump));
+        }
+        console.log(totIter);
+    }
+}
+
 document.querySelector('.check-code').addEventListener('click', function() {
     let codeData = myEditor.getValue();
     let loopArr = getLoops(codeData);
     let loopDetails = loopBreak(loopArr);
     console.log(loopDetails);
+
+    getIterNo(loopDetails);
 })
 
 // let arr = [];

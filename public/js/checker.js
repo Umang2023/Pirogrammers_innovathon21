@@ -99,7 +99,13 @@ function getIterationChange(data)
 
     var numberString = data.substring(lastSemicolon)
     numberString = numberString.replace(/[^0-9]/g,'')
-    var number = parseInt(numberString)
+    console.log(numberString.length)
+    
+    var number
+    if(numberString.length > 0)
+    number = parseInt(numberString)
+    else
+    number=1
 
     return [symbol,number]
 }

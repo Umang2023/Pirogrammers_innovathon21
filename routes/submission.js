@@ -43,7 +43,7 @@ router.put('/submit',authMiddleware,async(req,res)=>{
         var verdict = req.body.verdict
         var language = req.body.language
         var question = req.body.question
-        console.log(code)
+        // console.log(code)
 
         var newSubmission = new Submission({
             code,

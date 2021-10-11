@@ -16,8 +16,8 @@ const Submission  = require('./database_models/submission')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 // console.log(process.env.MONGO_URL)
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-// mongoose.connect('mongodb://localhost:27017/jaggacode', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost:27017/jaggacode', { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.connection.on('connected', () => {
     console.log('connected to database')

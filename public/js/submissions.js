@@ -12,41 +12,71 @@ document.addEventListener('DOMContentLoaded',async ()=>{
     .then(res=>res.json())
 
     fillSubmissionList(data.data)
-    console.log(data.data)
+    // console.log(data.data)
 
 })
 
 async function fillSubmissionList(data)
 {
-    var i=4;
+    var i=5;
+    // console.log(submissionList.children)
     while(submissionList.children.length > i)
     {
-        submissionList.removeChild(submissionList.children[i-1])
+        submissionList.removeChild(submissionList.children[i])
     }
+    // console.log(submissionList.children)
+    // console.log(submissionList.children.length)
 
-    data.forEach(element => {
+    data.forEach((element,index) => {
+
         var idDiv = document.createElement('a')
         idDiv.innerHTML = element._id
-        idDiv.style = "margin-top:4%"
+        idDiv.style = "padding-top:4%"
         idDiv.href = `/submissions/${element._id}`
         idDiv.target = '_blank'
+        idDiv.classList.add('submission-cell')
+
+        if(index%2 == 0)
+        idDiv.classList.add('submission-bg-color')
         
         var questionDiv = document.createElement('div')
         questionDiv.innerHTML = element.question
-        questionDiv.style = "margin-top:4%"
+        questionDiv.style = "padding-top:4%"
+        questionDiv.classList.add('submission-cell')
+
+        if(index%2 == 0)
+        questionDiv.classList.add('submission-bg-color')
         
         var userDiv = document.createElement('div')
         userDiv.innerHTML = element.userHandle[0].codeforces
-        userDiv.style = "margin-top:4%"
+        userDiv.style = "padding-top:4%"
+        userDiv.classList.add('submission-cell')
+
+        if(index%2 == 0)
+        userDiv.classList.add('submission-bg-color')
 
         var verdictDiv = document.createElement('div')
         verdictDiv.innerHTML = element.verdict
-        verdictDiv.style = "margin-top:4%"
+        verdictDiv.style = "padding-top:4%"
+        verdictDiv.classList.add('submission-cell')
+
+        if(index%2 == 0)
+        verdictDiv.classList.add('submission-bg-color')
+
+        var timeDiv = document.createElement('div')
+        var t = new Date(element.time)
+        timeDiv.innerHTML = t.toLocaleString()
+        timeDiv.style = "padding-top:4%"
+        timeDiv.classList.add('submission-cell')
+
+        if(index%2 == 0)
+        timeDiv.classList.add('submission-bg-color')
 
         submissionList.appendChild(idDiv)
         submissionList.appendChild(questionDiv)
         submissionList.appendChild(userDiv)
         submissionList.appendChild(verdictDiv)
+        submissionList.appendChild(timeDiv)
 
     });
     

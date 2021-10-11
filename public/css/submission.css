@@ -5,6 +5,10 @@
     padding: 100px 50px 0 50px;
 }
 
+body {
+    font-family: 'Gideon Roman', cursive !important;
+}
+
 #your{
     opacity: 1;
     position: relative;
@@ -14,5 +18,19 @@
 .submission-list
 {
     display: grid;
-    grid-template-columns: 30% 30% 20% 20%;
+    grid-template-columns: 20% 25% 15% 15% 25%;
+}
+
+.submission-cell{
+    border: 1px black solid;
+    text-align: center;
+}
+
+.submission-bg-color{
+    background-color: lightgray;
+}
+
+.filters{
+    border: 2px solid black;
+    margin-left: 2%;
 }

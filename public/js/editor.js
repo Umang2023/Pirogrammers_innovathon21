@@ -129,5 +129,53 @@ document.querySelector('.run-code').addEventListener('click',async ()=>{
 
 })
 
+document.querySelector('.submit-code').addEventListener('click',async ()=>{
+    var code = editor.getValue();
+    var language = 'cpp17'
+    var verdict = 'Accepted' // hardcoded as of now
+
+    var temp = document.querySelectorAll('.problem-chip')
+    var open = 1;
+    for(var i=0; i<temp.length; ++i)
+    {
+        if(!(temp[i].style.backgroundColor == "")) open=i+1
+    }
+
+    var question = document.querySelector(`.problem-body${open} .problem-head .problem-title`).innerHTML
+
+    var submit = await fetch('/code/submit',{
+        method:'PUT',
+        headers:{
+            'Content-Type' : 'application/json'
+        },
+        body:JSON.stringify({
+            code,
+            language,
+            verdict,
+            question
+        })
+    }).then(res=>res.json())
+
+    console.log(submit)
+})
+
+document.addEventListener('DOMContentLoaded',async ()=>{
+    // console.log(document.querySelector('.problem-body1 .problem-head .problem-title').innerHTML)
+    // console.log(document.querySelectorAll('problem-chip'))
+    // var temp = document.querySelectorAll('.problem-chip')
+    // var open = 1;
+    // for(var i=0; i<temp.length; ++i)
+    // {
+        // console.log(temp[i].style.backgroundColor == "")
+    //     if(!(temp[i].style.backgroundColor == "")) open=i+1
+    // }
+
+    // console.log(open)
+
+    // var questionName = document.querySelector(`.problem-body${open} .problem-head .problem-title`).innerHTML
+    // console.log(questionName)
+    
+})
+
 window.onload = getDashboardData();
 

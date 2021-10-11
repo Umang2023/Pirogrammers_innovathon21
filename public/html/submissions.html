@@ -1,121 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-  
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/submission.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/submission.css" />
 
-  <link rel="shortcut icon" href="../resources/logo.png" type="image/x-icon" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet" />
-  <title>JuggaCode!</title>
-</head>
+    <link
+      rel="shortcut icon"
+      href="../resources/logo.png"
+      type="image/x-icon"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gideon+Roman&display=swap"
+      rel="stylesheet"
+    />
+    <title>JuggaCode!</title>
+  </head>
 
-<body>
-  <div class="dashboard-page">
-    <div class="home-page-navbar z-depth-3">
-      <div class="home-navbar-left">
-        <div class="navbar-logo">
-          <a href="/dashboard" title="Home" class="navbar-logo-link">
-            <div class="navbar-logo-img">
-              <img class="navbar-img" src="../resources/logo.png" alt="" />
+  <body>
+    <div class="dashboard-page">
+      <div class="home-page-navbar z-depth-3">
+        <div class="home-navbar-left">
+          <div class="navbar-logo">
+            <a href="/dashboard" title="Home" class="navbar-logo-link">
+              <div class="navbar-logo-img">
+                <img class="navbar-img" src="../resources/logo.png" alt="" />
+              </div>
+              <div class="navbar-logo-title">JuggaCode</div>
+            </a>
+          </div>
+
+          <div class="navbar-code">
+            <a href="/editor" class="navbar-code-link">
+              <div class="navbar-code-title">Code</div>
+            </a>
+          </div>
+
+          <div class="navbar-stats">
+            <a href="/stats" class="navbar-stats-link">
+              <div class="navbar-stats-title">My stats</div>
+            </a>
+          </div>
+
+          <div class="navbar-practice">
+            <a href="/practice" class="navbar-practice-link">
+              <div class="navbar-practice-title">Practice</div>
+            </a>
+          </div>
+
+          <div class="navbar-submissions">
+            <a href="/submissions" class="navbar-submissions-link">
+              <div class="navbar-submissions-title">My Submissions</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="home-navbar-right">
+          <div class="navbar-profile">
+            <a href="/profile" class="navbar-profile-link" title="My Profile">
+              <div class="navbar-profile-img"></div>
+            </a>
+          </div>
+          <form action="/user/logout" class="navbar-logout">
+            <button class="waves-effect waves-light btn user-logout-but">
+              Logout
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="submission-content">
+        <div class="submission-list">
+          <div class="submission-cell"><h4>ID</h4></div>
+          <div class="submission-cell"><h4>Question</h4></div>
+          <div class="submission-cell"><h4>User</h4></div>
+          <div class="submission-cell"><h4>Verdict</h4></div>
+          <div class="submission-cell"><h4>Time</h4></div>
+        </div>
+
+        <div class="filters">
+          <div class="my-subm-div">
+            <label> My submissions </label>
+            <input
+              type="checkbox"
+              name="your"
+              id="your"
+              class="browser-default"
+              value="true"
+              checked="true"
+            />
+          </div>
+          <p>Apply filters</p>
+
+          <div class="question-selector">
+            <div class="filter-ques-div">
+              <p>Question</p>
+              <div class="select">
+                <select
+                  name="ques"
+                  id="ques"
+                  class="browser-default custom-select"
+                >
+                  <option value="All">All</option>
+                  <option value="CQXYM Count Permutations">
+                    CQXYM Count Permutations
+                  </option>
+                  <option value="Contest Start">Contest Start</option>
+                  <option value="Slay the Dragon">Slay the Dragon</option>
+                </select>
+              </div>
             </div>
-            <div class="navbar-logo-title">JuggaCode</div>
-          </a>
-        </div>
 
-        <div class="navbar-code">
-          <a href="/editor" class="navbar-code-link">
-            <div class="navbar-code-title">Code</div>
-          </a>
-        </div>
+            <div class="filter-soln-div">
+              <p>Verdict</p>
+              <div class="select">
+                <select
+                  name="verd"
+                  id="verd"
+                  class="browser-default custom-select"
+                >
+                  <option value="All">All</option>
+                  <option value="Accepted">Accepted</option>
+                  <option value="Wrong Answer">Wrong Answer</option>
+                  <option value="Time Limit Exceeded">
+                    Time Limit Exceeded
+                  </option>
+                  <option value="Run Time Error">Run Time Error</option>
+                </select>
+              </div>
+            </div>
 
-        <div class="navbar-stats">
-          <a href="/stats" class="navbar-stats-link">
-            <div class="navbar-stats-title">My stats</div>
-          </a>
-        </div>
-
-        <div class="navbar-practice">
-          <a href="/practice" class="navbar-practice-link">
-            <div class="navbar-practice-title">Practice</div>
-          </a>
-        </div>
-
-        <div class="navbar-submissions">
-          <a href="/submissions" class="navbar-submissions-link">
-            <div class="navbar-submissions-title">My Submissions</div>
-          </a>
-        </div>
-      </div>
-
-      <div class="home-navbar-right">
-        <div class="navbar-profile">
-          <a href="/profile" class="navbar-profile-link" title="My Profile">
-            <div class="navbar-profile-img"></div>
-          </a>
-        </div>
-        <form action="/user/logout" class="navbar-logout">
-          <button class="waves-effect waves-light btn user-logout-but">
-            Logout
-          </button>
-        </form>
-      </div>
-    </div>
-
-    <div class="submission-content">
-      <div class="submission-list">
-        <div class="submission-cell"><h4>ID</h4></div>
-        <div class="submission-cell"><h4>Question</h4></div>
-        <div class="submission-cell"><h4>User</h4></div>
-        <div class="submission-cell"><h4>Verdict</h4></div>
-        <div class="submission-cell"><h4>Time</h4></div>
-      </div>
-      
-      <div class="filters">
-
-        <input type="checkbox" name="your" id="your" class="browser-default" value="true" checked="true">
-        <label class="browser-default"> your only </label><br>
-
-        <p> Apply filters</p>
-        <div class="question-selector">
-          <p>Question</p>
-          <select name="ques" id="ques" class="browser-default">
-            <option value="All">All</option>
-            <option value="CQXYM Count Permutations">CQXYM Count Permutations</option>
-            <option value="Contest Start">Contest Start</option>
-            <option value="Slay the Dragon">Slay the Dragon</option>
-          </select>
-
-          <p>Verdict</p>
-          <select name="verd" id="verd" class="browser-default">
-            <option value="All">All</option>
-            <option value="Accepted">Accepted</option>
-            <option value="Wrong Answer">Wrong Answer</option>
-            <option value="Time Limit Exceeded">Time Limit Exceeded</option>
-            <option value="Run Time Error">Run Time Error</option>
-          </select>
-          
-          <p>User</p>
-          <input type="text" id="user-submission"/>
-
-          <button class="btn filter-apply-button">Apply</button>
+            <p>User</p>
+            <input type="text" id="user-submission" />
+            <div class="filter-btn-div">
+              <button class="btn filter-apply-button">Apply</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    
-
-  </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="../js/submissions.js"></script>
-</body>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="../js/submissions.js"></script>
+  </body>
 </html>

@@ -3,9 +3,6 @@
     display: grid;
     grid-template-columns: 80% 20%;
     padding: 100px 50px 0 50px;
-}
-
-body {
     font-family: 'Gideon Roman', cursive !important;
 }
 

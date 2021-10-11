@@ -19,9 +19,9 @@ passport.use(new GoogleStrategy({
     proxy:true
 },async function(accessToken, refreshToken, profile, done){
     try{
-        console.log(accessToken)
-        console.log(refreshToken)
-        console.log(profile)
+        // console.log(accessToken)
+        // console.log(refreshToken)
+        // console.log(profile)
         var foundUser = await User.findOne({googleId:profile.id})
 
         if(foundUser)

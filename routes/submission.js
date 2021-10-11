@@ -59,7 +59,7 @@ async function checkSubmission(question , code, language)
         })
         .then(t=>t.json())
 
-    console.log(compilationOutput)
+    // console.log(compilationOutput)
     
     if(compilationOutput.memory == null || compilationOutput.cpuTime == null)
     {
@@ -88,7 +88,7 @@ async function checkSubmission(question , code, language)
     {
         if(verification[question].output[i] != output[i])
         {
-            console.log(i+1,verification[question].output[i] , output[i])
+            // console.log(i+1,verification[question].output[i] , output[i])
             return {
                 isError:true,
                 verdict:"Wrong Answer",

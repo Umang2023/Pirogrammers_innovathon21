@@ -1,33 +1,123 @@
-.submission-content
-{
+.submission-content {
     display: grid;
     grid-template-columns: 80% 20%;
-    padding: 100px 50px 0 50px;
+    padding: 100px 50px 100px 50px;
     font-family: 'Gideon Roman', cursive !important;
+    height: calc(100vh - 60px);
 }
 
-#your{
+#your {
     opacity: 1;
     position: relative;
     pointer-events: all;
 }
 
-.submission-list
-{
+.submission-list {
     display: grid;
     grid-template-columns: 20% 25% 15% 15% 25%;
 }
 
-.submission-cell{
+.submission-cell {
     border: 1px black solid;
     text-align: center;
 }
 
-.submission-bg-color{
+.submission-cell>h4 {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    color: white;
+    margin: 0;
+    border: 1px black solid;
+    padding: 5px;
+}
+
+.submission-bg-color {
     background-color: lightgray;
 }
 
-.filters{
+.filters {
     border: 2px solid black;
     margin-left: 2%;
+    height: 100%;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    font-family: 'Abril Fatface', cursive !important;
+}
+
+#no-subm-msg {
+    font-size: 1.8rem;
+    font-family: 'Abril Fatface', cursive !important;
+}
+
+.my-subm-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+}
+
+input[type=checkbox] {
+    margin-left: 5px;
+}
+
+.filter-soln-div, .filter-ques-div {
+    padding: 5px;
+    width: 100% !important;
+}
+
+.custom-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    background: rgb(0, 0, 0);
+    background-image: none;
+    font-family: 'Abril Fatface', cursive !important;
+    /* padding: 0.2rem; */
+}
+
+.custom-select {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0.5rem;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: 'Abril Fatface', cursive !important;
+    border-radius: 5px;
+}
+
+.filter-btn-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.filter-apply-button {
+    background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+    text-transform: none;
+    font-size: 1.2rem;
+    color: rgb(255, 255, 255);
+    font-family: 'Abril Fatface', cursive !important;
+    /* margin-bottom: 2rem; */
+}
+
+.temp-class {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.null-class {
+    display: none;
 }

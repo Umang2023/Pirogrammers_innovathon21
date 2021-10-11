@@ -5,9 +5,22 @@ const Submission  = require('../database_models/submission')
 const authMiddleware = require('../middleware/authMiddleware')
 const handleMiddleware = require('../middleware/handleMiddleware')
 const fetch = require('node-fetch')
+const verification = require('../database_models/code')
 
 router.post('/compileCode', async (req,res)=>{
     try{
+        // console.log(req.body.inputGiven)
+
+        // console.log(verification.p1.input)
+        var inputString = ""
+        for(var i=0; i<verification.p1.input.length; ++i)
+        {
+            inputString+= verification.p1.input[i].toString();
+            inputString+= '\n';
+        }
+
+        // console.log(inputString)
+
         const proxy = "https://cors-anywhere.herokuapp.com/";
         const url = "https://api.jdoodle.com/v1/execute";
 
@@ -21,14 +34,24 @@ router.post('/compileCode', async (req,res)=>{
                 script: req.body.codeWritten,
                 language: req.body.language,
                 versionIndex: "0",
-                stdin: req.body.inputGiven,
+                stdin: inputString,
                 clientId: process.env.CLIENT_ID_JDOODLE,
                 clientSecret: process.env.CLIENT_SECRET_JDOODLE,
             })
         })
         .then(t=>t.json())
 
-        // console.log(data)
+        console.log(data)
+
+        var receivedOutput = data.output.split('\n')
+        console.log(receivedOutput)
+
+        for(var i=0; i<receivedOutput.length-1; ++i)
+        {
+            if(verification.p1.output[i] != parseInt(receivedOutput[i]))
+            console.log('wrong answer')
+        }
+
         return res.status(200).json({isError:false,data:data})
 
     }catch(error){

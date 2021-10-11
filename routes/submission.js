@@ -34,7 +34,7 @@ async function checkSubmission(question , code, language)
 
     for(var i=0; i<verification[question].input.length; ++i)
     {
-        inputString+= verification[question].input[i].toString();
+        inputString+= verification[question].input[i];
         inputString+= '\n';
     }
     // console.log(inputString)

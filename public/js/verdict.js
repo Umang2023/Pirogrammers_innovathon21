@@ -320,6 +320,7 @@ function getMem() {
     let longlongStr = 'longlongint';
     let longStr = 'longint';
     let intStr = 'int';
+    let mainInd = codeData.indexOf('main()');
 
     let longlongIndSet = new Set();
     let longlongInd = codeData.indexOf(longlongStr, 0);
@@ -342,7 +343,10 @@ function getMem() {
                     item++;
                 }
                 currMem = Number(str) * 8;
-                if (Number(str) >= 1000000) {
+                if (Number(str) > 100000000 && item < mainInd) {
+                    rteErrCheck = 1;
+                }
+                if (Number(str) > 1000000 && item > mainInd) {
                     rteErrCheck = 1;
                 }
                 break;
@@ -375,7 +379,10 @@ function getMem() {
                     item++;
                 }
                 currMem = Number(str) * 4;
-                if (Number(str) >= 1000000) {
+                if (Number(str) > 100000000 && item < mainInd) {
+                    rteErrCheck = 1;
+                }
+                if (Number(str) > 1000000 && item > mainInd) {
                     rteErrCheck = 1;
                 }
                 break;
@@ -408,7 +415,10 @@ function getMem() {
                     item++;
                 }
                 currMem = Number(str) * 4;
-                if (Number(str) >= 1000000) {
+                if (Number(str) > 100000000 && item < mainInd) {
+                    rteErrCheck = 1;
+                }
+                if (Number(str) > 1000000 && item > mainInd) {
                     rteErrCheck = 1;
                 }
                 break;

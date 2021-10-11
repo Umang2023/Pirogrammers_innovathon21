@@ -4,11 +4,13 @@ let prob2Max = 2000000000;
 let prob3Max = 200000;
 
 let tleVerdict = 'There are chances of Time Limit Exceeded!';
-let intOverflow = 'There are chances of integer overflow!';
+let intOverflow = 'There are chances of Integer Overflow!';
 let memoryOverflow = 'There are chances of Memory Limit Exceeded';
-let tleFine = 'Looks like your code will not give Time Limit Exceeded error';
-let intFine = 'Looks like your code will not give interger overflow error';
-let memoryFine = 'Looks like your code will not give Memory Limit exceeded error';
+let rteError = 'There are chances of Run Time Error';
+let tleFine = 'Looks like your code will not give Time Limit Exceeded Error';
+let intFine = 'Looks like your code will not give Interger Overflow Error';
+let memoryFine = 'Looks like your code will not give Memory Limit Exceeded Error';
+let rteFine = 'Looks like your code will not give Run Time Error';
 
 function getLoops(codeData) {
     let n = codeData.length;
@@ -300,6 +302,142 @@ function checkTle(totIterNo) {
     }
 }
 
+function checkIntOver() {
+    let codeData = myEditor.getValue();
+    codeData = codeData.replace(/\s/g, '');
+    if (codeData.includes('longlongint') || codeData.includes('longlong')) {
+        return intFine;
+    } else {
+        return intOverflow;
+    }
+}
+
+function getMem() {
+    let totMem = 0;
+    let rteErrCheck = 0;
+    let codeData = myEditor.getValue();
+    codeData = codeData.replace(/\s/g, '');
+    let longlongStr = 'longlongint';
+    let longStr = 'longint';
+    let intStr = 'int';
+
+    let longlongIndSet = new Set();
+    let longlongInd = codeData.indexOf(longlongStr, 0);
+    while (longlongInd >= 0) {
+        longlongIndSet.add(longlongInd);
+        longlongInd = codeData.indexOf(longlongStr, longlongInd + 1);
+    }
+    for (let item of longlongIndSet) {
+        let currMem = 0;
+        while (1) {
+            if (codeData[item] === ';') {
+                currMem = 8;
+                break;
+            }
+            if (codeData[item] === '[') {
+                let str = '';
+                item++;
+                while (codeData[item] !== ']') {
+                    str += codeData[item];
+                    item++;
+                }
+                currMem = Number(str) * 8;
+                if (Number(str) >= 1000000) {
+                    rteErrCheck = 1;
+                }
+                break;
+            }
+            item++;
+        }
+        totMem += currMem;
+    }
+
+    let longIndSet = new Set();
+    let longInd = codeData.indexOf(longStr, 0);
+    while (longInd >= 0) {
+        if (!longlongIndSet.has(longInd - 4)) {
+            longIndSet.add(longInd);
+        }
+        longInd = codeData.indexOf(longStr, longInd + 1);
+    }
+    for (let item of longIndSet) {
+        let currMem = 0;
+        while (1) {
+            if (codeData[item] === ';') {
+                currMem = 4;
+                break;
+            }
+            if (codeData[item] === '[') {
+                let str = '';
+                item++;
+                while (codeData[item] !== ']') {
+                    str += codeData[item];
+                    item++;
+                }
+                currMem = Number(str) * 4;
+                if (Number(str) >= 1000000) {
+                    rteErrCheck = 1;
+                }
+                break;
+            }
+            item++;
+        }
+        totMem += currMem;
+    }
+
+    let intSet = new Set();
+    let intInd = codeData.indexOf(intStr, 0);
+    while (intInd >= 0) {
+        if (!longlongIndSet.has(intInd - 8) && !longIndSet.has(intInd - 4)) {
+            intSet.add(intInd);
+        }
+        intInd = codeData.indexOf(intStr, intInd + 1);
+    }
+    for (let item of intSet) {
+        let currMem = 0;
+        while (1) {
+            if (codeData[item] === ';') {
+                currMem = 4;
+                break;
+            }
+            if (codeData[item] === '[') {
+                let str = '';
+                item++;
+                while (codeData[item] !== ']') {
+                    str += codeData[item];
+                    item++;
+                }
+                currMem = Number(str) * 4;
+                if (Number(str) >= 1000000) {
+                    rteErrCheck = 1;
+                }
+                break;
+            }
+            item++;
+        }
+        totMem += currMem;
+    }
+
+    totMem -= 4;
+    return [totMem, rteErrCheck];
+}
+
+function checkMem(totMem) {
+    if (totMem >= 256 * 1024 *1024) {
+        return memoryOverflow;
+    } else {
+        return memoryFine;
+    }
+}
+
+function checkRte(rteErrCheck) {
+    if (rteErrCheck === 1) {
+        return rteError;
+    } else {
+        return rteFine;
+    }
+}
+
 document.querySelector('.check-code').addEventListener('click', function() {
     document.querySelector('.pre-verdict').innerHTML = '<p>Pre Submit Verdicts:</p>';
     let codeData = myEditor.getValue();
@@ -313,89 +451,20 @@ document.querySelector('.check-code').addEventListener('click', function() {
     let pTagTle = document.createElement('p');
     pTagTle.innerHTML = tleMessage;
     document.querySelector('.pre-verdict').appendChild(pTagTle);
+
+    let intMessage = checkIntOver();
+    let pTagInt = document.createElement('p');
+    pTagInt.innerHTML = intMessage;
+    document.querySelector('.pre-verdict').appendChild(pTagInt);
+
+    let [totMem, rteErrCheck] = getMem();
+    console.log('total memory: ' + totMem);
+    let memMessage = checkMem(totMem);
+    let rteMessage = checkRte(rteErrCheck);
+    let pTagMem = document.createElement('p');
+    pTagMem.innerHTML = memMessage;
+    document.querySelector('.pre-verdict').appendChild(pTagMem);
+    let pTagRte = document.createElement('p');
+    pTagRte.innerHTML = rteMessage;
+    document.querySelector('.pre-verdict').appendChild(pTagRte);
 })
-
-// let arr = [];
-//     let loopDetails = [];
-//     for (let i = 0; i < getLoops.length; i++) {
-//         let curr = getLoops[i].split(';');
-//         let start, end, jump;
-//         let jumpCases = curr[2];
-//         let multiply = 0, divide = 0;
-//         if (jumpCases.includes('++') || jumpCases.includes('--')) {
-//             jump = 1; 
-//         } else if (jumpCases.includes('+=')) {
-//             jump = Number(jumpCases.split('+=')[1]);
-//         } else if (jumpCases.includes('-=')) {
-//             jump = Number(jumpCases.split('-=')[1]);
-//         } else if (jumpCases.includes('+')) {
-//             jump = Number(jumpCases.split('+')[1]);
-//         } else if (jumpCases.includes('-')) {
-//             jump = Number(jumpCases.split('-')[1]);
-//         } else if (jumpCases.includes('*=')) {
-//             multiply = 1;
-//             jump = Number(jumpCases.split('*=')[1]);
-//         } else if (jumpCases.includes('/=')) {
-//             divide = 1;
-//             jump = Number(jumpCases.split('/=')[1]);
-//         } else if (jumpCases.includes('*')) {
-//             multiply = 1;
-//             jump = Number(jumpCases.split('*')[1]);
-//         } else if (jumpCases.includes('/')) {
-//             divide = 1;
-//             jump = Number(jumpCases.split('/')[1]);
-//         }
-
-//         let lessThan = 0, greaterThan = 0, lessEqual = 0, greaterEqual = 0;
-//         let endCases = curr[1];
-//         let endVar;
-//         if (endCases.includes('<=')) {
-//             lessEqual = 1;
-//             endVar = endCases.split('<=')[1];
-//         } else if (endCases.includes('>=')) {
-//             greaterEqual = 1;
-//             endVar = endCases.split('>=')[1];
-//         } else if (endCases.includes('>')) {
-//             greaterThan = 1;
-//             endVar = endCases.split('>')[1];
-//         } else {
-//             lessThan = 1;
-//             endVar = endCases.split('<')[1];
-//         }
-
-//         endVar = endVar.replace(/\s/g, '');
-//         if (isNaN(endVar) === false) {
-//             end = Number(endVar);
-//         } else {
-//             let compactCode = x.replace(/\s/g,'');
-//             let len = compactCode.length;
-//             let userDec = endVar + '=';
-//             let inpDec = '>>' + endVar;
-//             if (compactCode.includes(userDec)) {
-//                 let ind = compactCode.lastIndexOf(userDec);
-//                 let temp = "";
-//                 ind = ind + endVar.length + 1;
-//                 while (compactCode[ind] !== ';') {
-//                     temp += compactCode[ind];
-//                     ind++;
-//                 }
-//                 end = Number(temp);
-//             } else {
-//                 end = 100000;
-//             }
-//         }
-//         start = Number(curr[0].split('=')[1]);
-//         let obj = {
-//             start: start,
-//             end: end,
-//             jump: jump,
-//             multiply: multiply,
-//             divide: divide,
-//             lessThan: lessThan,
-//             lessEqual: lessEqual,
-//             greaterThan: greaterThan,
-//             greaterEqual: greaterEqual
-//         }
-//         arr.push(obj);
-//     }
-//     console.log({arr});

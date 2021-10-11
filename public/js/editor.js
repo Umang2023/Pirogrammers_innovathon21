@@ -98,7 +98,7 @@ document.querySelector('.run-code').addEventListener('click',async ()=>{
     var language = 'cpp17'
     var inputGiven = document.getElementById('input_box').value;
     // console.log(inputGiven)
-    checker(codeWritten)
+    // checker(codeWritten)
     document.getElementById('output_box').value = 'Running...'
     var output = await fetch('/code/compileCode',{
         method:"POST",

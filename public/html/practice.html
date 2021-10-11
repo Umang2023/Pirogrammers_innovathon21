@@ -1,116 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
     <link rel="stylesheet" href="../css/style.css" />
 
-    <link rel="shortcut icon" href="../resources/logo.png" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="../resources/logo.png"
+      type="image/x-icon"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap"
+      rel="stylesheet"
+    />
     <title>JuggaCode!</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="practice-page">
-        <div class="home-page-navbar z-depth-3">
-            <div class="home-navbar-left">
-                <div class="navbar-logo">
-                    <a href="/dashboard" title="Home" class="navbar-logo-link">
-                        <div class="navbar-logo-img">
-                            <img class="navbar-img" src="../resources/logo.png" alt="" />
-                        </div>
-                        <div class="navbar-logo-title">JuggaCode</div>
-                    </a>
-                </div>
+      <div class="home-page-navbar z-depth-3">
+        <div class="home-navbar-left">
+          <div class="navbar-logo">
+            <a href="/dashboard" title="Home" class="navbar-logo-link">
+              <div class="navbar-logo-img">
+                <img class="navbar-img" src="../resources/logo.png" alt="" />
+              </div>
+              <div class="navbar-logo-title">JuggaCode</div>
+            </a>
+          </div>
 
-                <div class="navbar-code">
-                    <a href="/editor" class="navbar-code-link">
-                        <div class="navbar-code-title">Code</div>
-                    </a>
-                </div>
+          <div class="navbar-code">
+            <a href="/editor" class="navbar-code-link">
+              <div class="navbar-code-title">Code</div>
+            </a>
+          </div>
 
-                <div class="navbar-stats">
-                    <a href="/stats" class="navbar-stats-link">
-                        <div class="navbar-stats-title">My stats</div>
-                    </a>
-                </div>
+          <div class="navbar-stats">
+            <a href="/stats" class="navbar-stats-link">
+              <div class="navbar-stats-title">My stats</div>
+            </a>
+          </div>
 
-                <div class="navbar-practice">
-                    <a href="/practice" class="navbar-practice-link">
-                        <div class="navbar-practice-title">Practice</div>
-                    </a>
-                </div>
+          <div class="navbar-practice">
+            <a href="/practice" class="navbar-practice-link">
+              <div class="navbar-practice-title">Practice</div>
+            </a>
+          </div>
 
-                <div class="navbar-submissions">
-                    <a href="/submissions" class="navbar-submissions-link">
-                        <div class="navbar-submissions-title">My Submissions</div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="home-navbar-right">
-                <div class="navbar-profile">
-                    <a href="/profile" class="navbar-profile-link" title="My Profile">
-                        <div class="navbar-profile-img"></div>
-                    </a>
-                </div>
-                <form action="/user/logout" class="navbar-logout">
-                    <button class="waves-effect waves-light btn user-logout-but">
-                        Logout
-                    </button>
-                </form>
-            </div>
+          <div class="navbar-submissions">
+            <a href="/submissions" class="navbar-submissions-link">
+              <div class="navbar-submissions-title">My Submissions</div>
+            </a>
+          </div>
         </div>
 
-        <div class="practice-page-body">
-            <div class="get-practice">
-                <div class="get-practice-head">
-                    Enter Details
-                </div>
-                <div class="practice-number">
-                    <div class="get-number">
-                        Enter number of problems: 
-                    </div>
-                    <input class="problem-no" type="number">
-                </div>
-                <div class="practice-difficulty">
-                    <div class="get-min-dif">
-                        Enter min difficulty range: 
-                    </div>
-                    <input class="problem-min-dif" type="number">
-                </div>
-                <div class="practice-difficulty">
-                    <div class="get-max-dif">
-                        Enter max difficulty range: 
-                    </div>
-                    <input class="problem-max-dif" type="number">
-                </div>
-                <div class="practice-tags">
-                    <div class="get-tags">
-                        Enter problem tags: 
-                    </div>
-                    <div class="chips chips-placeholder chips-autocomplete">
-                    </div>
-                </div>
-                <div class="practice-submit">
-                    <a class="waves-effect waves-light get-prob-but">Get Problems</a>
-                </div>
-            </div>
+        <div class="home-navbar-right">
+          <div class="navbar-profile">
+            <a href="/profile" class="navbar-profile-link" title="My Profile">
+              <div class="navbar-profile-img"></div>
+            </a>
+          </div>
+          <form action="/user/logout" class="navbar-logout">
+            <button class="waves-effect waves-light btn user-logout-but">
+              Logout
+            </button>
+          </form>
+        </div>
+      </div>
 
-            <div class="practice-list">
-            </div>
+      <div class="practice-page-body">
+        <div class="get-practice">
+          <div class="get-practice-head">Enter Details</div>
+          <div class="practice-number">
+            <div class="get-number">Enter number of problems:</div>
+            <input class="problem-no" type="number" />
+          </div>
+          <div class="practice-difficulty">
+            <div class="get-min-dif">Enter min difficulty range:</div>
+            <input class="problem-min-dif" type="number" />
+          </div>
+          <div class="practice-difficulty">
+            <div class="get-max-dif">Enter max difficulty range:</div>
+            <input class="problem-max-dif" type="number" />
+          </div>
+          <div class="practice-tags">
+            <div class="get-tags">Enter problem tags:</div>
+            <div class="chips chips-placeholder chips-autocomplete"></div>
+          </div>
+          <div class="practice-submit">
+            <button class="waves-effect waves-light btn get-prob-but">
+              Get Problems
+            </button>
+          </div>
         </div>
 
+        <div class="practice-list"></div>
+      </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="../js/practice.js"></script>
-</body>
-
+  </body>
 </html>

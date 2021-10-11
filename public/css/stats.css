@@ -137,12 +137,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 50px 0 50px 50px;
 }
 
 .cf-profile-img-div>img {
     border-radius: 50%;
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
 }
 
 .cf-name-div {
@@ -151,17 +152,24 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
+    font-size: 2.2rem;
+    margin: 0px 0 50px 50px;
 }
 
 .stats-div {
     width: 50%;
+    height: 100%;
     display: flex;
     justify-content: center;
-    align-items: left;
     flex-direction: column;
     font-size: 1.5rem;
     padding: 20px;
+}
+
+.current-rating-div, .current-rank-div, .max-rank-div, .max-rating-div, .friend-count {
+    float: left !important;
+    padding: 10px;
+    margin: 5px;
 }
 
 .canvas-container {

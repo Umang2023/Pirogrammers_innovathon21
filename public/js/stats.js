@@ -1,5 +1,8 @@
 //codeforces data fetch
 var userName = '';
+Chart.defaults.font.size = 16;
+Chart.defaults.font.family = '"Times New Roman", Times, serif';
+Chart.defaults.font.weight = 900;
 function capitalizeFirstLetter(string) {
     if (string.length > 0) {
         string = string.toLowerCase();
@@ -114,7 +117,7 @@ function generateRatingChart(rating_change_graph) {
             label: 'Rating Change',
             borderColor: 'rgb(0, 0, 0)',
             data: datapoints,
-            backgroundColor: 'rgba(0,255,255,0.1)',
+            backgroundColor: 'rgba(0,0,153,0.5)',
             pointBackgroundColor: 'rgb(0, 0, 153)',
             pointBorderColor: 'rgb(0, 0, 153)',
             fill: true
@@ -126,13 +129,36 @@ function generateRatingChart(rating_change_graph) {
         options: {
             // backgroundColor: 'rgb(255, 255, 255)',
             // color: 'rgb(0,0,0)'
+            layout: {
+                padding: 10
+            },
             scales: {
+                y: {
+                    ticks: {
+                        color: 'rgb(0,0,0)'
+                    },
+                    title: {
+                        color: 'rgb(0,0,0)',
+                        display: true,
+                        text: 'Rating'
+                    }
+                },
                 x: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: {
+                        color: 'rgb(0,0,0)'
+                    },
+                    title: {
+                        color: 'rgb(0,0,0)',
+                        display: true,
+                        text: 'Date'
+                    }
                 }
             }
+
         }
     };
+
     var myChart = new Chart(
         document.getElementById('myChart'),
         config
@@ -195,7 +221,8 @@ function fillProblemTags() {
             })
             for (let [key, value] of nmap) {
                 //console.log(key + ' = ' + value);
-                dtype[i] = { label: key, y: value };
+                let nkey = capitalizeFirstLetter(key);
+                dtype[i] = { label: nkey, y: value };
                 i += 1;
             }
             dtype.sort(compare);
@@ -242,7 +269,7 @@ function generateTagChart(submissionsObj) {
     const data = {
         labels: labels,
         datasets: [{
-            label: 'Problems solved',
+            label: 'Number of problems solved',
 
             data: datapoints,
             backgroundColor: [
@@ -278,7 +305,31 @@ function generateTagChart(submissionsObj) {
         type: 'bar',
         data: data,
         options: {
-            indexAxis: 'y'
+            indexAxis: 'y',
+
+            scales: {
+                x: {
+                    ticks: {
+                        color: 'rgb(0,0,0)'
+                    },
+                    title: {
+                        color: 'rgb(0,0,0)',
+                        display: true,
+                        text: 'Number of problems solved'
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: 'rgb(0,0,0)'
+                    },
+                    title: {
+                        color: 'rgb(0,0,0)',
+                        display: true,
+                        text: 'Problem Tag'
+                    }
+                }
+            }
+
         }
     };
     var myChart = new Chart(
@@ -328,7 +379,11 @@ function generateSubmissionRadGraph(submissions) {
     const config = {
         type: 'doughnut',
         data: data,
-
+        options: {
+            // layout: {
+            //     padding: 10
+            // }
+        }
     };
     var myChart = new Chart(
         document.getElementById('submissions'),
@@ -384,7 +439,42 @@ function generateBarGraph(submissions) {
     const config = {
         type: 'bar',
         data: data,
-
+        options: {
+            // animations: {
+            //     tension: {
+            //         duration: 1000,
+            //         easing: 'linear',
+            //         from: 1,
+            //         to: 0,
+            //         loop: true
+            //     }
+            // },
+            // layout: {
+            //     padding: 10
+            // },
+            scales: {
+                y: {
+                    ticks: {
+                        color: 'rgb(0,0,0)'
+                    },
+                    title: {
+                        color: 'rgb(0,0,0)',
+                        display: true,
+                        text: 'Number of problems solved'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: 'rgb(0,0,0)'
+                    },
+                    title: {
+                        color: 'rgb(0,0,0)',
+                        display: true,
+                        text: 'Problem Rating'
+                    }
+                }
+            }
+        }
     };
     var myChart = new Chart(
         document.getElementById('rating-subm'),

@@ -12,17 +12,43 @@ function getDashboardData() {
         fillDashboard(data);
     })
 }
-
+mytags = {}
 window.onload = getDashboardData();
+function getAlltags() {
+    fetch('https://codeforces.com/api/problemset.problems')
+        .then(res => res.json())
+        .then((data) => {
+            console.log(data)
+            data.result.problems.forEach((element) => {
+                // console.log(element)
 
+
+                for (let j = 0; j < element.tags.length; ++j) {
+                    // tags += {element[i].tags[j]: null};
+                    // Object.assign(tags, { key: key });
+                    mytags[element.tags[j]] = null;
+                    // console.log(element.tags[j]);
+                }
+
+            })
+            console.log(mytags)
+        })
+}
 let elem
 document.addEventListener('DOMContentLoaded', function () {
+    getAlltags();
     elem = document.querySelector(".chips");
     let elems = document.querySelectorAll(".chips");
     const options = {
         placeholder: "Enter tag",
         secondaryPlaceholder: "More tags?",
+        autocompleteOptions: {
+            data: mytags,
+            limit: Infinity,
+            minLength: 1
+        }
     };
+
     let instances = M.Chips.init(elems, options);
     M.AutoInit();
 });
@@ -33,6 +59,15 @@ function getProblems(data) {
     let maxDif = document.querySelector('.problem-max-dif').value;
     let datas = data.result.problems;
     let count = 0;
+    if (!number) {
+        number = 5;
+    }
+    if (!minDif) {
+        minDif = 800;
+    }
+    if (!maxDif) {
+        maxDif = 2000;
+    }
     for (let i = 0; count < number && i < datas.length; i++) {
         if (datas[i].rating >= minDif && datas[i].rating <= maxDif) {
             let div = document.createElement('a');
@@ -46,6 +81,10 @@ function getProblems(data) {
             count++;
         }
     }
+    M.toast({
+        html: 'Problems loaded',
+        classes: 'toast-class'
+    });
     probUrl = 'https://codeforces.com/api/problemset.problems?';
 }
 
@@ -56,7 +95,7 @@ document.querySelector('.get-prob-but').addEventListener('click', function () {
     if (instance.length > 0) {
         probUrl += 'tags=';
         for (let i = 0; i < instance.length; i++) {
-            probUrl += instance[i].tag + ';';
+            probUrl += (instance[i].tag).toLowerCase() + ';';
         }
     }
     console.log(probUrl);

@@ -119,12 +119,11 @@ function getEnd(loopStr) {
             }
             end = Number(temp);
         } else {
-            let probList = document.querySelector('.problem-list');
-            for (let i = 0; i < probList.children.length; i++) {
-                if (probList.children[i].style.backgroundColor !== '#f2f2f2;') {
-                    if (i === 0) {
+            for (let i = 1; i < 4; i++) {
+                if (!document.querySelector(`.problem-body${i}`).classList.contains('hidden')) {
+                    if (i === 1) {
                         end = 100000;
-                    } else if (i === 1) {
+                    } else if (i === 2) {
                         end = 2000000000;
                     } else {
                         end = 200000;
@@ -176,6 +175,7 @@ function getIterNo(loopDetails) {
     let iterTrack = [];
     console.log(loopDetails.length);
     for (let i = 0; i < loopDetails.length; i++) {
+        //console.log(totIter);
         let start = loopDetails[i].start;
         let end = loopDetails[i].end;
         let jump = loopDetails[i].jump;
@@ -260,7 +260,8 @@ function getIterNo(loopDetails) {
             totIter += (firstIter * secondIter);
         }
     }
-    console.log(totIter);
+    return totIter;
+    //console.log(totIter);
 }
 
 document.querySelector('.check-code').addEventListener('click', function() {
@@ -269,7 +270,8 @@ document.querySelector('.check-code').addEventListener('click', function() {
     let loopDetails = loopBreak(loopArr);
     console.log(loopDetails);
 
-    getIterNo(loopDetails);
+    let totIterNo = getIterNo(loopDetails);
+    console.log(totIterNo);
 })
 
 // let arr = [];

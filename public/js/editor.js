@@ -142,7 +142,7 @@ document.querySelector('.submit-code').addEventListener('click',async ()=>{
     }
 
     var question = document.querySelector(`.problem-body${open} .problem-head .problem-title`).innerHTML
-
+    document.getElementById('output_box').value = 'Running...'
     var submit = await fetch('/code/submit',{
         method:'PUT',
         headers:{
@@ -156,7 +156,12 @@ document.querySelector('.submit-code').addEventListener('click',async ()=>{
         })
     }).then(res=>res.json())
 
-    console.log(submit)
+    // console.log(submit)
+    M.toast({
+        html:submit.verdict.verdict,
+        classes: 'toast-class'
+    })
+    document.getElementById('output_box').value = submit.output
 })
 
 document.addEventListener('DOMContentLoaded',async ()=>{

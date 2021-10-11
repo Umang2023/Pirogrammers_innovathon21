@@ -5,12 +5,18 @@ let prob3Max = 200000;
 
 let tleVerdict = 'There are chances of Time Limit Exceeded!';
 let intOverflow = 'There are chances of Integer Overflow!';
-let memoryOverflow = 'There are chances of Memory Limit Exceeded';
-let rteError = 'There are chances of Run Time Error';
-let tleFine = 'Looks like your code will not give Time Limit Exceeded Error';
-let intFine = 'Looks like your code will not give Interger Overflow Error';
-let memoryFine = 'Looks like your code will not give Memory Limit Exceeded Error';
-let rteFine = 'Looks like your code will not give Run Time Error';
+let memoryOverflow = 'There are chances of Memory Limit Exceeded!';
+let rteError = 'There are chances of Run Time Error!';
+let inError = "Your code doen't seem to have fast I/O. There are chances of Time Limit Exceeded Error for large number of inputs!"
+let outError = "Your code doesn't seem to have any \\n. Using endl for displaying large number of outputs will flush output each time and may result in Time Limit Exceed Error!";
+let interactiveError = 'But not using endl or flushing output in interactive problems may cause Idleness Limit Exceeded Error. Be careful!';
+let tleFine = 'Looks like your code will not give Time Limit Exceeded Error. Great Work!';
+let intFine = 'Looks like your code will not give Integer Overflow Error. Great Work!';
+let memoryFine = 'Looks like your code will not give Memory Limit Exceeded Error. Great Work!';
+let rteFine = 'Looks like your code will not give Run Time Error. Great Work!';
+let inFine = 'Looks like you are using fast I/O. Great Work!'
+let outFine = 'Looks like you are using \\n in your code. Therefore Time Limit Exceeded Error will not happen for displaying large number of outputs using endl. Great Work!';
+let interactiveFine = 'However, using endl in interactive problems will not give Idleness Limit Exceeded Error!';
 
 function getLoops(codeData) {
     let n = codeData.length;
@@ -28,7 +34,7 @@ function getLoops(codeData) {
             let obj = {
                 parent: -1,
                 loopNo: loopCount,
-                loopContent: str 
+                loopContent: str
             }
             loopCount++;
             loopArr.push(obj);
@@ -43,7 +49,7 @@ function getLoops(codeData) {
                 let obj = {
                     parent: loopCount - 1,
                     loopNo: loopCount,
-                    loopContent: str 
+                    loopContent: str
                 }
                 loopCount++;
                 loopArr.push(obj);
@@ -54,11 +60,14 @@ function getLoops(codeData) {
 }
 
 function getJump(loopStr) {
-    let multiply = 0, divide = 0, add = 0, subtract = 0;
+    let multiply = 0,
+        divide = 0,
+        add = 0,
+        subtract = 0;
     let jump;
     if (loopStr.includes('++')) {
         add = 1;
-        jump = 1; 
+        jump = 1;
     } else if (loopStr.includes('--')) {
         subtract = 1;
         jump = 1;
@@ -105,7 +114,10 @@ function getCurrentProb() {
 }
 
 function getEnd(loopStr) {
-    let lessThan = 0, greaterThan = 0, lessEqual = 0, greaterEqual = 0;
+    let lessThan = 0,
+        greaterThan = 0,
+        lessEqual = 0,
+        greaterEqual = 0;
     let endVar;
     if (loopStr.includes('<=')) {
         lessEqual = 1;
@@ -182,7 +194,7 @@ function loopBreak(loopArr) {
         }
         loopDetails.push(obj);
     }
-    
+
     return loopDetails;
 }
 
@@ -433,7 +445,7 @@ function getMem() {
 }
 
 function checkMem(totMem) {
-    if (totMem >= 256 * 1024 *1024) {
+    if (totMem >= 256 * 1024 * 1024) {
         return memoryOverflow;
     } else {
         return memoryFine;
@@ -448,7 +460,27 @@ function checkRte(rteErrCheck) {
     }
 }
 
-document.querySelector('.check-code').addEventListener('click', function() {
+function checkLargeIn() {
+    let codeData = myEditor.getValue();
+    codeData = codeData.replace(/\s/g, '');
+    if (codeData.includes('ios::sync_with_stdio(false);cin.tie(nullptr);')) {
+        return inFine;
+    } else {
+        return inError;
+    }
+}
+
+function checkLargeOutEndl() {
+    let codeData = myEditor.getValue();
+    codeData = codeData.replace(/\s/g, '');
+    if (codeData.includes("<<'\\n'")) {
+        return [outFine, interactiveError];
+    } else {
+        return [outError, interactiveFine];
+    }
+}
+
+document.querySelector('.check-code').addEventListener('click', function () {
     document.querySelector('.pre-verdict').innerHTML = '<p>Pre Submit Verdicts:</p>';
     let codeData = myEditor.getValue();
     let loopArr = getLoops(codeData);
@@ -477,4 +509,17 @@ document.querySelector('.check-code').addEventListener('click', function() {
     let pTagRte = document.createElement('p');
     pTagRte.innerHTML = rteMessage;
     document.querySelector('.pre-verdict').appendChild(pTagRte);
+
+    let inMessage = checkLargeIn();
+    let pTagIn = document.createElement('p');
+    pTagIn.innerHTML = inMessage;
+    document.querySelector('.pre-verdict').appendChild(pTagIn);
+
+    let [outMessage, interactiveMessage] = checkLargeOutEndl();
+    let pTagOut = document.createElement('p');
+    pTagOut.innerHTML = outMessage;
+    document.querySelector('.pre-verdict').appendChild(pTagOut);
+    let pTagInteractive = document.createElement('p');
+    pTagInteractive.innerHTML = interactiveMessage;
+    document.querySelector('.pre-verdict').appendChild(pTagInteractive);
 })

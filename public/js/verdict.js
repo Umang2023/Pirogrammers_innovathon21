@@ -3,9 +3,12 @@ let prob1Max = 100000;
 let prob2Max = 2000000000;
 let prob3Max = 200000;
 
-let tleVerdict = "There are chances of Time Limit Exceeded!";
-let intOverflow = "There are chances of integer overflow!";
-let memoryOverflow = "There are chances of Memory Limit Exceeded";
+let tleVerdict = 'There are chances of Time Limit Exceeded!';
+let intOverflow = 'There are chances of integer overflow!';
+let memoryOverflow = 'There are chances of Memory Limit Exceeded';
+let tleFine = 'Looks like your code will not give Time Limit Exceeded error';
+let intFine = 'Looks like your code will not give interger overflow error';
+let memoryFine = 'Looks like your code will not give Memory Limit exceeded error';
 
 function getLoops(codeData) {
     let n = codeData.length;
@@ -85,6 +88,20 @@ function getJump(loopStr) {
     return [jump, multiply, divide, add, subtract];
 }
 
+function getCurrentProb() {
+    for (let i = 1; i < 4; i++) {
+        if (!document.querySelector(`.problem-body${i}`).classList.contains('hidden')) {
+            if (i === 1) {
+                return 1;
+            } else if (i === 2) {
+                return 2;
+            } else {
+                return 3;
+            }
+        }
+    }
+}
+
 function getEnd(loopStr) {
     let lessThan = 0, greaterThan = 0, lessEqual = 0, greaterEqual = 0;
     let endVar;
@@ -119,17 +136,13 @@ function getEnd(loopStr) {
             }
             end = Number(temp);
         } else {
-            let probList = document.querySelector('.problem-list');
-            for (let i = 0; i < probList.children.length; i++) {
-                if (probList.children[i].style.backgroundColor !== '#f2f2f2;') {
-                    if (i === 0) {
-                        end = 100000;
-                    } else if (i === 1) {
-                        end = 2000000000;
-                    } else {
-                        end = 200000;
-                    }
-                }
+            let currProb = getCurrentProb();
+            if (currProb === 1) {
+                end = 100000;
+            } else if (currProb === 2) {
+                end = 2000000000;
+            } else {
+                end = 200000;
             }
         }
     }
@@ -176,6 +189,7 @@ function getIterNo(loopDetails) {
     let iterTrack = [];
     console.log(loopDetails.length);
     for (let i = 0; i < loopDetails.length; i++) {
+        //console.log(totIter);
         let start = loopDetails[i].start;
         let end = loopDetails[i].end;
         let jump = loopDetails[i].jump;
@@ -260,16 +274,45 @@ function getIterNo(loopDetails) {
             totIter += (firstIter * secondIter);
         }
     }
-    console.log(totIter);
+    return totIter;
+    //console.log(totIter);
+}
+
+function checkTle(totIterNo) {
+    if (totIterNo === Infinity) {
+        return tleVerdict;
+    }
+    let currProb = getCurrentProb();
+    let prob1Tle = 1000000000;
+    let prob3Tle = 2000000000;
+    if (currProb === 1 || currProb === 2) {
+        if (totIterNo > prob1Tle) {
+            return tleVerdict;
+        } else {
+            return tleFine;
+        }
+    } else {
+        if (totIterNo > prob3Tle) {
+            return tleVerdict;
+        } else {
+            return tleFine;
+        }
+    }
 }
 
 document.querySelector('.check-code').addEventListener('click', function() {
+    document.querySelector('.pre-verdict').innerHTML = '<p>Pre Submit Verdicts:</p>';
     let codeData = myEditor.getValue();
     let loopArr = getLoops(codeData);
     let loopDetails = loopBreak(loopArr);
     console.log(loopDetails);
 
-    getIterNo(loopDetails);
+    let totIterNo = getIterNo(loopDetails);
+    console.log('total iterations: ' + totIterNo);
+    let tleMessage = checkTle(totIterNo);
+    let pTagTle = document.createElement('p');
+    pTagTle.innerHTML = tleMessage;
+    document.querySelector('.pre-verdict').appendChild(pTagTle);
 })
 
 // let arr = [];

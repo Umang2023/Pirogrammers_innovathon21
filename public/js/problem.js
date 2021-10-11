@@ -113,3 +113,8 @@ document.querySelector('.cancel-code').addEventListener('click', function() {
     document.querySelector('.check-console').classList.add('hidden');
     document.querySelector('.run-inp-out').classList.remove('hidden');
 })
+
+document.querySelector('.submit-code').addEventListener('click', function() {
+    document.querySelector('.check-console').classList.add('hidden');
+    document.querySelector('.run-inp-out').classList.remove('hidden');
+})

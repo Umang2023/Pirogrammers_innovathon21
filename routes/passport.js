@@ -15,7 +15,7 @@ passport.deserializeUser(async (id,done)=>{
 passport.use(new GoogleStrategy({
     clientID:process.env.CLIENT_ID_GOOGLE,
     clientSecret:process.env.CLIENT_SECRET_GOOGLE,
-    callbackURL:process.env.REDIRECT_URI_GOOGLE_PRACTICE,
+    callbackURL:process.env.REDIRECT_URI_GOOGLE,
     proxy:true
 },async function(accessToken, refreshToken, profile, done){
     try{

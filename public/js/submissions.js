@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // console.log(data.data)
 
 })
+/*
 function addSubmissions() {
     let noMsg = document.getElementById('no-subm-msg')
     noMsg.remove();
@@ -56,7 +57,53 @@ function addSubmissions() {
     Time.appendChild(TimeHeading);
     document.querySelector('.submission-list').appendChild(Time)
 
+}*/
+
+function addSubmissions() {
+    let noMsg = document.getElementById('no-subm-msg')
+    if (noMsg) {
+        noMsg.remove();
+        let id = document.createElement('div');
+        id.setAttribute('class', 'submission-cell');
+        let idHeading = document.createElement('h4');
+        idHeading.innerHTML = 'ID'
+        id.appendChild(idHeading);
+        document.querySelector('.submission-list').appendChild(id)
+
+
+        let Question = document.createElement('div');
+        Question.setAttribute('class', 'submission-cell');
+        let QuestionHeading = document.createElement('h4');
+        QuestionHeading.innerHTML = 'Question'
+        Question.appendChild(QuestionHeading);
+        document.querySelector('.submission-list').appendChild(Question)
+
+
+        let User = document.createElement('div');
+        User.setAttribute('class', 'submission-cell');
+        let UserHeading = document.createElement('h4');
+        UserHeading.innerHTML = 'User'
+        User.appendChild(UserHeading);
+        document.querySelector('.submission-list').appendChild(User)
+
+
+        let Verdict = document.createElement('div');
+        Verdict.setAttribute('class', 'submission-cell');
+        let VerdictHeading = document.createElement('h4');
+        VerdictHeading.innerHTML = 'Verdict'
+        Verdict.appendChild(VerdictHeading);
+        document.querySelector('.submission-list').appendChild(Verdict)
+
+
+        let Time = document.createElement('div');
+        Time.setAttribute('class', 'submission-cell');
+        let TimeHeading = document.createElement('h4');
+        TimeHeading.innerHTML = 'Time'
+        Time.appendChild(TimeHeading);
+        document.querySelector('.submission-list').appendChild(Time)
+    }
 }
+
 async function fillSubmissionList(data) {
     if (!data || (data.length == 0)) {
         // document.querySelector('.submission-cell').classList.add('null-class');
@@ -70,7 +117,9 @@ async function fillSubmissionList(data) {
     }
     addSubmissions();
     // document.querySelector('.submission-cell').classList.remove('null-class');
-    document.querySelector('.submission-list').classList.remove('temp-class');
+    // document.querySelector('.submission-list').classList.remove('temp-class');
+    if (document.querySelector('.submission-list').classList.contains('temp-class'))
+        document.querySelector('.submission-list').classList.remove('temp-class');
     var i = 5;
     console.log(data)
     // console.log(submissionList.children)

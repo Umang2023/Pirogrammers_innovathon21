@@ -249,6 +249,10 @@ router.get('/submissions',authMiddleware,async(req,res)=>{
             aggList.push(temp)
         }
 
+        aggList.push({
+            $sort:{time:-1}
+        })
+
         var result = await Submission.aggregate(aggList)
         return res.status(200).json({isError:false,data:result})
 

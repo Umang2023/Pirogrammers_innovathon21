@@ -7,20 +7,106 @@ const handleMiddleware = require('../middleware/handleMiddleware')
 const fetch = require('node-fetch')
 const verification = require('../database_models/code')
 
+async function checkSubmission(question , code, language)
+{
+    switch(question)
+    {
+        case 'CQXYM Count Permutations':{
+            question=0
+            break;
+        }
+        case 'Contest Start':{
+            question=1
+            break;
+        }
+        case 'Slay the Dragon':{
+            question=2
+            break;
+        }
+        default:{
+            question:0
+        }
+    }
+
+    var inputString = ""
+
+    // console.log(question , verification[question].input)
+
+    for(var i=0; i<verification[question].input.length; ++i)
+    {
+        inputString+= verification[question].input[i].toString();
+        inputString+= '\n';
+    }
+    // console.log(inputString)
+
+    const proxy = "https://cors-anywhere.herokuapp.com/";
+    const url = "https://api.jdoodle.com/v1/execute";
+
+    var compilationOutput = await fetch(url,{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body:JSON.stringify({
+                script: code,
+                language: language,
+                versionIndex: "0",
+                stdin: inputString,
+                clientId: process.env.CLIENT_ID_JDOODLE,
+                clientSecret: process.env.CLIENT_SECRET_JDOODLE,
+            })
+        })
+        .then(t=>t.json())
+
+    // console.log(compilationOutput)
+    
+    if(compilationOutput.memory == null || compilationOutput.cpuTime == null)
+    {
+        if(compilationOutput.output.includes('Timeout'))
+        return {
+            isError:true,
+            verdict:"Time Limit Exceeded",
+            compilerOutput:compilationOutput.output
+        }
+    }
+
+    if(!compilationOutput.output.includes('\n'))
+    {
+        return {
+            isError:true,
+            verdict:"Run Time Error",
+            compilerOutput:compilationOutput.output
+        }
+    }
+
+    var output = compilationOutput.output.split('\n')
+
+    // console.log(output)
+        
+    for(var i=0; i<output.length-1; ++i)
+    {
+        if(verification[question].output[i].toString() != output[i])
+        {
+            // console.log(i+1,verification[question].output[i].toString() , output[i])
+            return {
+                isError:true,
+                verdict:"Wrong Answer",
+                compilerOutput:compilationOutput.output
+            }
+        }
+    }
+
+    return {
+        isError:false,
+        verdict:"Accepted",
+        compilerOutput:compilationOutput.output
+    }
+
+}
+
 router.post('/compileCode', async (req,res)=>{
     try{
-        // console.log(req.body.inputGiven)
-
-        // console.log(verification.p1.input)
-        var inputString = ""
-        for(var i=0; i<verification.p1.input.length; ++i)
-        {
-            inputString+= verification.p1.input[i].toString();
-            inputString+= '\n';
-        }
-
-        // console.log(inputString)
-
         const proxy = "https://cors-anywhere.herokuapp.com/";
         const url = "https://api.jdoodle.com/v1/execute";
 
@@ -34,23 +120,23 @@ router.post('/compileCode', async (req,res)=>{
                 script: req.body.codeWritten,
                 language: req.body.language,
                 versionIndex: "0",
-                stdin: inputString,
+                stdin: "",
                 clientId: process.env.CLIENT_ID_JDOODLE,
                 clientSecret: process.env.CLIENT_SECRET_JDOODLE,
             })
         })
         .then(t=>t.json())
 
-        console.log(data)
+        // console.log(data)
 
-        var receivedOutput = data.output.split('\n')
-        console.log(receivedOutput)
+        // var receivedOutput = data.output.split('\n')
+        // console.log(receivedOutput)
 
-        for(var i=0; i<receivedOutput.length-1; ++i)
-        {
-            if(verification.p1.output[i] != parseInt(receivedOutput[i]))
-            console.log('wrong answer')
-        }
+        // for(var i=0; i<receivedOutput.length-1; ++i)
+        // {
+        //     if(verification.p1.output[i] != parseInt(receivedOutput[i]))
+        //     console.log('wrong answer')
+        // }
 
         return res.status(200).json({isError:false,data:data})
 
@@ -68,10 +154,13 @@ router.put('/submit',authMiddleware,async(req,res)=>{
         var question = req.body.question
         // console.log(code)
 
+        var verdictReceived = await checkSubmission(question,code,language)
+        // console.log(verdictReceived)
+
         var newSubmission = new Submission({
             code,
             language,
-            verdict,
+            verdict:verdictReceived.verdict,
             question,
             submittedBy:req.user.id
         })
@@ -84,7 +173,7 @@ router.put('/submit',authMiddleware,async(req,res)=>{
             new:true
         })
 
-        return res.status(200).json({isError:false,data:updatedUser})
+        return res.status(200).json({isError:false,verdict:verdictReceived,output:verdictReceived.compilerOutput})
 
     }catch(error){
         console.log(error.message)

@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Umang2023/JaggaCoda#readme",
   "dependencies": {
+    "@microsoft/applicationinsights-web": "^2.8.3",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cookie-session": "^1.4.0",
